@@ -1,0 +1,173 @@
+# Nexuron Technologies
+> Nexuron Technologies is a custom software development company headquartered in Calgary, Alberta, Canada, with a development centre in Kadi, Gujarat, India. We build AI-accelerated web applications, mobile apps, cloud infrastructure, and automation solutions for startups and enterprises across North America and globally. Founded with 10+ years of combined team experience, Nexuron has delivered 20+ projects across healthcare, legal tech, martech, travel, fintech, and retail.
+
+## Who We Are
+Nexuron Technologies is a full-service software engineering and product development company. We serve startups and mid-sized businesses that need a reliable offshore development partner with clear communication, on-time delivery, and long-term technical accountability. Our team is based across Canada and India, giving clients the advantage of North American business alignment with cost-efficient execution.
+
+**Company type:** Private, B2B technology services company
+**Founded:** 2016 (10+ years of experience)
+**Headquarters:** 2230 Brightoncrest Common SE, Calgary, AB, Canada
+**Development centre:** FF-70, 71 Hanumant Plaza, Nr. Vadvala Hanumandada Temple, Kadi, GJ, India — 384440
+**Team size:** 13+ specialists
+**Projects delivered:** 20+
+**Clients served:** 15+ across Canada, USA, Sweden, and India
+**Industries:** Healthcare, Legal Tech, MarTech, SaaS, Travel & Tourism, Retail, Finance
+**Contact:** info@nexurontechnologies.com
+**Website:** https://nexurontechnologies.com
+**Book a call:** https://calendly.com/nexurontechnologies-info
+
+## Leadership Team
+- **Pritesh** — CEO & Founder
+- **Umesh** — Project Manager
+- **Devansh** — VP of Technology
+- **Het** — Full Stack Developer
+- **Jaimin** — Team Lead
+- **Shubh** — Team Lead
+- **Tirth** — Business Development Executive
+- **Yash** — Mobile App Developer
+- **Kandarp** — Full Stack Developer
+- **Arsh** — Backend Developer
+- **Prayesh** — Frontend Developer
+- **Prasoon** — AI / Agentic Engineer
+- **Priyanshu** — Python Developer
+
+## What We Build
+Nexuron delivers end-to-end software products across four capability areas:
+
+**1. Web Development**
+Custom web applications, business portals, SaaS platforms, and e-commerce systems. Technology stack includes MEAN/MERN, Laravel, PHP, ASP.NET Core, WordPress, and React/Angular/Vue.js frontends.
+
+**2. Mobile App Development**
+Native iOS (Swift, SwiftUI) and Android (Kotlin, Java) apps, plus cross-platform solutions with Flutter and React Native. Covers marketplace apps, booking systems, healthcare tools, and on-demand platforms.
+
+**3. Cloud, DevOps & Automation**
+CI/CD pipeline setup, Docker/Kubernetes infrastructure, cloud migrations on AWS, Azure, and GCP. Workflow automation using n8n and Zapier. AI-powered business automation and agentic systems.
+
+**4. AI & Emerging Technology**
+Custom AI/ML model development, NLP, computer vision, predictive analytics, and AI agent engineering. IoT device connectivity, sensor integration, and cloud dashboard development. Python-based data pipelines and production ML systems.
+
+**5. Design**
+UI/UX design with user research, wireframing, and interactive prototyping. Graphic design, brand identity, and 3D product visualization for web and mobile products.
+
+## Services — Full List
+
+### Web Development Services
+- MEAN/MERN Stack Development: https://nexurontechnologies.com/services/mean-mern
+- Frontend Development (React, Angular, Vue.js): https://nexurontechnologies.com/services/frontend
+- WordPress Development: https://nexurontechnologies.com/services/wordpress
+- PHP Development: https://nexurontechnologies.com/services/php
+- Laravel Development: https://nexurontechnologies.com/services/laravel
+- .NET Development (ASP.NET Core, Azure): https://nexurontechnologies.com/services/dot-net
+
+### Mobile App Development Services
+- iOS App Development (Swift, SwiftUI, ARKit, Apple Pay): https://nexurontechnologies.com/services/ios
+- Android App Development (Kotlin, Java, Google Play): https://nexurontechnologies.com/services/android
+- React Native Development (cross-platform iOS & Android): https://nexurontechnologies.com/services/react-native
+- Flutter Development (iOS, Android & Web): https://nexurontechnologies.com/services/flutter
+
+### Emerging Technology Services
+- AI & Machine Learning Development: https://nexurontechnologies.com/services/ai-ml
+- DevOps Services (CI/CD, Terraform, Ansible, Prometheus): https://nexurontechnologies.com/services/devops
+- IoT Development (connected devices, smart systems, cloud dashboards): https://nexurontechnologies.com/services/iot
+
+### Design Services
+- UI/UX Design (research, wireframes, prototypes): https://nexurontechnologies.com/services/ui-ux
+- Graphic Design (branding, logos, marketing creatives): https://nexurontechnologies.com/services/graphic
+- 3D Design & Visualization (product renders, architectural, AR/VR): https://nexurontechnologies.com/services/3d
+
+## Hire Dedicated Developers
+
+### Frontend
+- Hire JavaScript Developers: https://nexurontechnologies.com/hire/javascript-developer
+- Hire Angular Developers: https://nexurontechnologies.com/hire/angular-developer
+- Hire React Developers: https://nexurontechnologies.com/hire/react-developer
+- Hire Vue.js Developers: https://nexurontechnologies.com/hire/vuejs-developer
+
+### CMS & E-Commerce
+- Hire WordPress Developers: https://nexurontechnologies.com/hire/wordpress-developer
+- Hire WooCommerce Developers: https://nexurontechnologies.com/hire/woocommerce-developer
+- Hire Wix Developers: https://nexurontechnologies.com/hire/wix-developer
+- Hire Shopify Developers: https://nexurontechnologies.com/hire/shopify-developer
+
+### Backend
+- Hire .NET Developers: https://nexurontechnologies.com/hire/dotnet-developer
+- Hire Laravel Developers: https://nexurontechnologies.com/hire/laravel-developer
+- Hire Node.js Developers: https://nexurontechnologies.com/hire/nodejs-developer
+- Hire PHP Developers: https://nexurontechnologies.com/hire/php-developer
+- Hire Python Developers: https://nexurontechnologies.com/hire/python-developer
+
+### DevOps & Cloud
+- Hire DevOps Engineers: https://nexurontechnologies.com/hire/devops-developer
+
+### AI/ML & Automation
+- Hire AI Developers: https://nexurontechnologies.com/hire/ai-developer
+- Hire Python AI/ML Developers: https://nexurontechnologies.com/hire/python-aiml-developer
+- Hire n8n Developers: https://nexurontechnologies.com/hire/n8n-developer
+- Hire Zapier Developers: https://nexurontechnologies.com/hire/zapier-developer
+
+### Mobile
+- Hire Flutter Developers: https://nexurontechnologies.com/hire/flutter-developer
+- Hire React Native Developers: https://nexurontechnologies.com/hire/react-native-developer
+
+## Client Work & Case Studies
+Portfolio and project case studies: https://nexurontechnologies.com/case-study
+
+### Featured Projects
+- **Neonify — AI-Powered Content Marketing Platform** (MarTech, 2026): Built a real-time AI content generation and multi-channel publishing platform for a B2B SaaS marketing company, using Cloudflare infrastructure for performance and reliability. https://nexurontechnologies.com/case-study/neonify-ai-content-platform
+
+- **Rx Incident — Pharmacy Safety Platform** (Healthcare, 2026): Built an anonymous incident reporting and cross-pharmacy learning platform for Canadian independent pharmacies, replacing paper logs and enabling provincial compliance without staff exposure to blame. https://nexurontechnologies.com/case-study/rx-incident-safety-platform
+
+- **Clause Room — Legal Clause Management Platform** (Legal Tech, 2026): Built a centralized contract clause library and approval workflow system for legal teams, eliminating manual clause hunting across email threads and shared drives. https://nexurontechnologies.com/case-study/clause-room-legal-platform
+
+- **AI-Enhanced Lead Management with n8n** (Automation, 2025): Built an n8n-powered automated lead distribution and personalized communication system for a SaaS platform serving tour and travel operators. https://nexurontechnologies.com/case-study/ai-enhanced-lead-management
+
+- **Modernizing Legacy Software with React, .NET & Azure** (Modernization, 2025): Rebuilt a legacy web platform with a React frontend and ASP.NET Core backend on Azure, delivering a secure, fast, and maintainable architecture. https://nexurontechnologies.com/case-study/modernizing-legacy-software
+
+- **Seamless Salon Experience — Mobile App Migration** (Mobile Apps, 2025): Migrated a salon chain's legacy booking app to a real-time mobile system with live waiting list updates and instant notifications, reducing scheduling confusion and missed appointments. https://nexurontechnologies.com/case-study/seamless-salon-experience
+
+## Insights & Technical Articles
+All articles: https://nexurontechnologies.com/insights
+
+Recent topics covered:
+- Building a Smart Parking Management Platform with React: https://nexurontechnologies.com/insights/building-a-smart-parking-management-platform-with-react-lessons-from-a-real-project
+- 7 Signs Your Business Needs Digital Transformation: https://nexurontechnologies.com/insights/7-signs-your-business-needs-digital-transformation
+- Flutter vs React Native in 2026: https://nexurontechnologies.com/insights/flutter-vs-react-native-in-2026-which-one-should-you-choose-for-your-app
+- How to Build an MVP in 2026: https://nexurontechnologies.com/insights/how-to-build-an-mvp-in-2026-the-complete-guide-for-startup-founders-and-small-business-owners
+- Custom Software vs Off-the-Shelf in 2026: https://nexurontechnologies.com/insights/custom-software-vs-off-the-shelf-software-in-2026-which-is-right-for-your-business
+- Digital Transformation for Small Business in 2026: https://nexurontechnologies.com/insights/digital-transformation-for-small-business-in-2026-the-practical-roadmap-that-actually-works
+- AI & Automation for Small Businesses in 2026: https://nexurontechnologies.com/insights/ai-automation-empower-small-businesses-in-2026
+- AI Agents in 2026 — What SMB Owners Must Know: https://nexurontechnologies.com/insights/ai-agents-in-2026-what-small-business-owners-must-know
+- ChatGPT vs Claude vs Gemini Comparison: https://nexurontechnologies.com/insights/chatgpt-vs-claude-vs-gemini-comparison-2025
+- Low-Code/No-Code Development in 2026: https://nexurontechnologies.com/insights/low-code-no-code-development-in-2026-smart-software-for-small-businesses
+- How to Hire a Software Development Company in 2026: https://nexurontechnologies.com/insights/how-to-hire-a-software-development-company-in-2026-the-complete-guide-for-small-business-owners
+- Cybersecurity Tips for Small Businesses in 2026: https://nexurontechnologies.com/insights/cybersecurity-tips-for-small-businesses-in-2026
+- Web & App Development in 2026 — Complete Guide: https://nexurontechnologies.com/insights/web-app-development-in-2026-the-complete-guide-to-building-digital-products-that-scale
+- Software Development & Cloud Automation in 2026: https://nexurontechnologies.com/insights/software-development-cloud-automation-in-2026-the-complete-guide-to-building-smarter-scalable-businesses
+- Digital Marketing & Branding in 2026: https://nexurontechnologies.com/insights/digital-marketing-branding-in-2026-the-complete-guide-to-building-a-brand-that-customers-remember
+- The Future of IT in 2025: https://nexurontechnologies.com/insights/the-future-of-it-in-2025-ai-cloud-cybersecurity
+
+## Why Clients Choose Nexuron
+- North American presence (Calgary, AB) with offshore development efficiency (Kadi, India)
+- End-to-end delivery: discovery, design, development, deployment, and post-launch support
+- 24/7 dedicated support with quick response times
+- Transparent communication and milestone-based project management
+- 5/5 client satisfaction across 15+ reviews
+- Experience across healthcare, legal tech, SaaS, travel, retail, and finance sectors
+- Ability to onboard dedicated developers within 48–72 hours
+
+## Client Testimonials
+"Working with Devansh and the Nexuron team has been straightforward from day one. They pick up requirements quickly, deliver clean code, and communicate clearly when priorities change." — Shahrzad, CEO
+
+"We needed a team that could improve our website without disrupting active campaigns. Nexuron handled the redesign, performance fixes, and new landing pages while keeping us in the loop at every stage." — Aakash Patel, Marketing Manager
+
+"Nexuron helped us deliver a custom software project for a client with a hard go-live date. They clarified scope early, handled third-party integrations carefully, and kept quality high even when requirements evolved mid-project." — Matthew Mayer, Senior Consultant
+
+"Nexuron became a reliable extension of our team. They understood the product vision quickly, executed with care, and stayed accountable through every milestone." — Jason Baker, CEO & Founder
+
+## Social & External Profiles
+- LinkedIn: https://www.linkedin.com/company/nexuron-technologies/
+- Facebook: https://www.facebook.com/nexuron.tech
+- Instagram: https://www.instagram.com/nexuron.technologies/
+
+## Sitemap
+Full sitemap: https://nexurontechnologies.com/sitemap.xml

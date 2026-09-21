@@ -1,0 +1,41 @@
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-logo-mark {
+  background: #fff;
+  color: var(--primary);
+  font-weight: 800;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.app-logo-sm .app-logo-mark {
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+}
+
+.app-logo-md .app-logo-mark {
+  width: 55px;
+  height: 55px;
+  font-size: 18px;
+}
+
+.app-logo-lg .app-logo-mark {
+  width: 100px;
+  height: 100px;
+  font-size: 28px;
+  border-radius: 28px;
+}
+
+.app-logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}

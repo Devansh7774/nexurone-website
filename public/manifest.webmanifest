@@ -1,0 +1,17 @@
+{
+  "name": "Nexuron Technologies",
+  "short_name": "Nexuron",
+  "description": "Custom software, web and mobile apps, cloud, AI, and automation.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/logo-dark-t-e1756917561911.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
