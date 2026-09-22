@@ -2,13 +2,23 @@ import nodemailer from 'nodemailer';
 
 let transporter;
 
+function env(name, fallback = '') {
+  const raw = process.env[name];
+  if (raw == null || raw === '') return fallback;
+  // Strip wrapping quotes if present (common in .env password values)
+  return String(raw).replace(/^['"]|['"]$/g, '');
+}
+
 function getTransporter() {
   if (transporter) return transporter;
 
-  const host = process.env.SMTP_HOST;
-  const port = parseInt(process.env.SMTP_PORT || '465', 10);
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+  const host = env('SMTP_HOST');
+  const port = parseInt(env('SMTP_PORT', '465'), 10);
+  const user = env('SMTP_USER');
+  const pass = env('SMTP_PASS');
+  const secureEnv = env('SMTP_SECURE');
+  const secure =
+    secureEnv === 'true' || secureEnv === '1' || (!secureEnv && port === 465);
 
   if (!host || !user || !pass) {
     return null;
@@ -17,7 +27,7 @@ function getTransporter() {
   transporter = nodemailer.createTransport({
     host,
     port,
-    secure: port === 465,
+    secure,
     auth: { user, pass },
   });
 
@@ -25,12 +35,12 @@ function getTransporter() {
 }
 
 export function isMailConfigured() {
-  return Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
+  return Boolean(env('SMTP_HOST') && env('SMTP_USER') && env('SMTP_PASS'));
 }
 
 export function getMailFrom() {
-  const address = process.env.SMTP_FROM || process.env.SMTP_USER;
-  const name = process.env.SMTP_FROM_NAME || 'Nexuron Technologies';
+  const address = env('SMTP_FROM') || env('SMTP_USER');
+  const name = env('SMTP_FROM_NAME') || 'Nexuron Technologies';
   return `"${name}" <${address}>`;
 }
 
@@ -59,4 +69,14 @@ export async function sendMail({ to, subject, html, text, devLogUrl }) {
   });
 
   return { sent: true };
+}
+
+/** Verify SMTP credentials (used by scripts/test-smtp.js). */
+export async function verifySmtp() {
+  const transport = getTransporter();
+  if (!transport) {
+    throw new Error('SMTP is not configured. Set SMTP_HOST, SMTP_USER, and SMTP_PASS in .env');
+  }
+  await transport.verify();
+  return true;
 }

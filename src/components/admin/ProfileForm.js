@@ -38,7 +38,7 @@ export default function ProfileForm({ initialProfile }) {
         return;
       }
       setAvatarUrl(data.avatar_url);
-      setAvatarInput(data.avatar_url.split('?')[0]);
+      setAvatarInput(String(data.avatar_url || '').split('?')[0]);
       router.refresh();
     } catch {
       setError('Upload failed. Please try again.');
@@ -173,7 +173,11 @@ export default function ProfileForm({ initialProfile }) {
               id="profile-avatar-url"
               className={inputClass}
               value={avatarInput}
-              onChange={(e) => setAvatarInput(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                setAvatarInput(value);
+                setAvatarUrl(value);
+              }}
               placeholder="https://example.com/photo.jpg"
             />
           </div>

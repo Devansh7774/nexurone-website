@@ -205,7 +205,7 @@ function LoginForm() {
               <button
                 type="submit"
                 disabled={loading || !email || !password}
-                className="relative mt-2 w-full flex items-center justify-center gap-2 rounded-xl nexuron-btn-solid"
+                className="relative mt-2 flex h-12 w-full items-center justify-center gap-2 rounded-xl px-4 text-sm font-semibold text-white nexuron-btn-solid disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <>
@@ -232,7 +232,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center bg-slate-50 font-sans selection:bg-blue-100 selection:text-blue-900">
+    <div className="relative flex min-h-dvh w-full flex-col bg-slate-50 font-sans selection:bg-blue-100 selection:text-blue-900">
       
       {/* Subtle background pattern for a premium UI feel */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -240,7 +240,7 @@ export default function LoginPage() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-[440px] px-4 sm:px-6">
+      <div className="relative z-10 m-auto w-full max-w-[440px] px-4 py-8 sm:px-6 sm:py-10">
         
         {/* Back Link */}
         <div className="mb-8 flex justify-center">

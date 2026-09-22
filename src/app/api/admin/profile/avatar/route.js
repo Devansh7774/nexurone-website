@@ -8,7 +8,7 @@ import { revalidateBlogPublic } from '@/lib/blog';
 const MAX_BYTES = 2 * 1024 * 1024;
 const ALLOWED_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif']);
 
-// POST /api/admin/profile/avatar — upload profile photo
+// POST /api/admin/profile/avatar — upload profile photo to local public/uploads
 export async function POST(request) {
   const auth = await requireApiUser();
   if (auth.error) return auth.error;
@@ -42,15 +42,20 @@ export async function POST(request) {
     const buffer = Buffer.from(await file.arrayBuffer());
     await writeFile(path.join(dir, filename), buffer);
 
-    const avatarUrl = `/uploads/avatars/${filename}?v=${Date.now()}`;
+    // Store path in MySQL (users.avatar_url); ?v= is only for browser cache bust
+    const storedPath = `/uploads/avatars/${filename}`;
+    const avatarUrl = `${storedPath}?v=${Date.now()}`;
 
-    await query(`UPDATE users SET avatar_url = $1 WHERE id = $2`, [avatarUrl, auth.user.id]);
+    await query(`UPDATE users SET avatar_url = $1 WHERE id = $2`, [storedPath, auth.user.id]);
 
     revalidateBlogPublic();
 
     return NextResponse.json({ avatar_url: avatarUrl });
   } catch (err) {
     console.error('[POST /api/admin/profile/avatar]', err);
-    return NextResponse.json({ error: 'Upload failed.' }, { status: 500 });
+    return NextResponse.json(
+      { error: err?.message ? `Upload failed: ${err.message}` : 'Upload failed.' },
+      { status: 500 }
+    );
   }
 }

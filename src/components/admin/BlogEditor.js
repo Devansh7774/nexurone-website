@@ -566,9 +566,9 @@ export default function BlogEditor({ post = null, categories = [], currentUser =
                 name="excerpt"
                 value={form.excerpt}
                 onChange={handleChange}
-                rows={2}
+                rows={3}
                 placeholder="Short summary of your post"
-                className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-base text-slate-700 outline-none focus:border-[#2f6bff] focus:ring-2 focus:ring-[#2f6bff]/15 placeholder-slate-400 resize-none shadow-sm"
+                className="w-full min-h-[5.5rem] bg-white border border-slate-200 rounded-xl px-4 py-3 text-base text-slate-700 outline-none focus:border-[#2f6bff] focus:ring-2 focus:ring-[#2f6bff]/15 placeholder-slate-400 resize-y shadow-sm"
               />
             </div>
           </div>

@@ -1,22 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { getInitials } from '@/lib/avatar';
 
 const sizeMap = {
-  xs: { box: 'w-6 h-6', text: 'text-[10px]' },
-  sm: { box: 'w-8 h-8', text: 'text-xs' },
-  md: { box: 'w-10 h-10', text: 'text-sm' },
-  lg: { box: 'w-12 h-12', text: 'text-base' },
-  xl: { box: 'w-16 h-16', text: 'text-lg' },
+  xs: { box: 'w-6 h-6', text: 'text-[10px]', px: 24 },
+  sm: { box: 'w-8 h-8', text: 'text-xs', px: 32 },
+  md: { box: 'w-10 h-10', text: 'text-sm', px: 40 },
+  lg: { box: 'w-12 h-12', text: 'text-base', px: 48 },
+  xl: { box: 'w-16 h-16', text: 'text-lg', px: 64 },
 };
 
 export function resolveAvatarUrl(avatarUrl) {
   if (!avatarUrl) return '';
   const value = String(avatarUrl).trim();
   if (!value) return '';
-  return value.split('?')[0];
+  return value;
 }
 
 export default function AuthorAvatar({
@@ -26,17 +26,23 @@ export default function AuthorAvatar({
   className = '',
 }) {
   const [imageError, setImageError] = useState(false);
-  const { box, text } = sizeMap[size] || sizeMap.md;
+  const { box, text, px } = sizeMap[size] || sizeMap.md;
   const initials = getInitials(name);
   const resolvedUrl = resolveAvatarUrl(avatarUrl);
+
+  useEffect(() => {
+    setImageError(false);
+  }, [resolvedUrl]);
 
   if (resolvedUrl && !imageError) {
     return (
       <Image
-        src={avatarUrl}
+        key={resolvedUrl}
+        src={resolvedUrl}
         alt={name ? `${name} profile photo` : 'Author photo'}
-        width={64}
-        height={64}
+        width={px}
+        height={px}
+        unoptimized
         className={`${box} rounded-full object-cover border border-gray-200 bg-gray-100 shrink-0 ${className}`}
         onError={() => setImageError(true)}
       />
