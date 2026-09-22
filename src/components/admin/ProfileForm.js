@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Loader2, Save, Upload, X } from 'lucide-react';
 import { ADMIN_BTN_PRIMARY } from '@/components/admin/AdminShellContext';
@@ -19,8 +19,16 @@ export default function ProfileForm({ initialProfile }) {
   const [avatarInput, setAvatarInput] = useState(initialProfile.avatar_url || '');
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [removing, setRemoving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    setName(initialProfile.name || '');
+    setBio(initialProfile.bio || '');
+    setAvatarUrl(initialProfile.avatar_url || '');
+    setAvatarInput(initialProfile.avatar_url || '');
+  }, [initialProfile.id, initialProfile.name, initialProfile.bio, initialProfile.avatar_url]);
 
   async function handleUpload(e) {
     const file = e.target.files?.[0];
@@ -81,10 +89,33 @@ export default function ProfileForm({ initialProfile }) {
     }
   }
 
-  function clearAvatar() {
+  async function clearAvatar() {
+    const previousUrl = avatarUrl || avatarInput;
+    setRemoving(true);
+    setError('');
     setAvatarUrl('');
     setAvatarInput('');
+
+    try {
+      const res = await fetch('/api/admin/profile/avatar', { method: 'DELETE' });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setError(data.error || 'Failed to remove photo.');
+        setAvatarUrl(previousUrl);
+        setAvatarInput(previousUrl.split('?')[0]);
+        return;
+      }
+      router.refresh();
+    } catch {
+      setError('Failed to remove photo. Please try again.');
+      setAvatarUrl(previousUrl);
+      setAvatarInput(String(previousUrl || '').split('?')[0]);
+    } finally {
+      setRemoving(false);
+    }
   }
+
+  const hasPhoto = Boolean(avatarUrl || avatarInput);
 
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -108,19 +139,20 @@ export default function ProfileForm({ initialProfile }) {
             <button
               type="button"
               onClick={() => fileRef.current?.click()}
-              disabled={uploading}
+              disabled={uploading || removing}
               className="w-full inline-flex items-center justify-center gap-2 text-sm font-medium text-blue-700 bg-blue-50 border border-blue-100 rounded-lg py-2.5 hover:bg-blue-100 transition disabled:opacity-50"
             >
               {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
               Upload photo
             </button>
-            {(avatarUrl || avatarInput) && (
+            {hasPhoto && (
               <button
                 type="button"
                 onClick={clearAvatar}
-                className="w-full inline-flex items-center justify-center gap-2 text-sm font-medium text-gray-600 border border-gray-200 rounded-lg py-2.5 hover:bg-gray-50 transition"
+                disabled={removing || uploading}
+                className="w-full inline-flex items-center justify-center gap-2 text-sm font-medium text-gray-600 border border-gray-200 rounded-lg py-2.5 hover:bg-gray-50 transition disabled:opacity-50"
               >
-                <X className="w-4 h-4" />
+                {removing ? <Loader2 className="w-4 h-4 animate-spin" /> : <X className="w-4 h-4" />}
                 Remove photo
               </button>
             )}

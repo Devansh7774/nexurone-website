@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { mkdir, writeFile } from 'fs/promises';
+import { mkdir, writeFile, unlink, readdir } from 'fs/promises';
 import path from 'path';
 import { requireApiUser } from '@/lib/auth';
 import { query } from '@/lib/db';
@@ -7,6 +7,21 @@ import { revalidateBlogPublic } from '@/lib/blog';
 
 const MAX_BYTES = 2 * 1024 * 1024;
 const ALLOWED_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif']);
+
+async function removeLocalAvatarFiles(userId) {
+  const dir = path.join(process.cwd(), 'public', 'uploads', 'avatars');
+  try {
+    const files = await readdir(dir);
+    const prefix = `${userId}.`;
+    await Promise.all(
+      files
+        .filter((name) => name.startsWith(prefix))
+        .map((name) => unlink(path.join(dir, name)).catch(() => null))
+    );
+  } catch {
+    // Directory may not exist yet
+  }
+}
 
 // POST /api/admin/profile/avatar — upload profile photo to local public/uploads
 export async function POST(request) {
@@ -38,11 +53,13 @@ export async function POST(request) {
     const dir = path.join(process.cwd(), 'public', 'uploads', 'avatars');
     await mkdir(dir, { recursive: true });
 
+    // Replace any previous extension for this user
+    await removeLocalAvatarFiles(auth.user.id);
+
     const filename = `${auth.user.id}.${ext}`;
     const buffer = Buffer.from(await file.arrayBuffer());
     await writeFile(path.join(dir, filename), buffer);
 
-    // Store path in MySQL (users.avatar_url); ?v= is only for browser cache bust
     const storedPath = `/uploads/avatars/${filename}`;
     const avatarUrl = `${storedPath}?v=${Date.now()}`;
 
@@ -57,5 +74,21 @@ export async function POST(request) {
       { error: err?.message ? `Upload failed: ${err.message}` : 'Upload failed.' },
       { status: 500 }
     );
+  }
+}
+
+// DELETE /api/admin/profile/avatar — clear avatar_url in MySQL and delete local file
+export async function DELETE() {
+  const auth = await requireApiUser();
+  if (auth.error) return auth.error;
+
+  try {
+    await query(`UPDATE users SET avatar_url = NULL WHERE id = $1`, [auth.user.id]);
+    await removeLocalAvatarFiles(auth.user.id);
+    revalidateBlogPublic();
+    return NextResponse.json({ success: true, avatar_url: '' });
+  } catch (err) {
+    console.error('[DELETE /api/admin/profile/avatar]', err);
+    return NextResponse.json({ error: 'Failed to remove photo.' }, { status: 500 });
   }
 }
