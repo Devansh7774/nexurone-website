@@ -114,7 +114,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <link rel="preconnect" href={R2_ORIGIN} crossOrigin="anonymous" />
         <link rel="dns-prefetch" href={R2_ORIGIN} />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
         {!isAdmin && !isGreenvelly && (
           <>
             <noscript>

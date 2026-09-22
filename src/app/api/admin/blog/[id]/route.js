@@ -6,13 +6,41 @@ import { BLOG_TAGS_JSON, BLOG_CATEGORY_IDS_JSON } from '@/lib/sql';
 import { linkPostTag, upsertBlogTag } from '@/lib/blogTags';
 import { syncPostCategories } from '@/lib/blogCategories';
 import { slugify, isValidSlug } from '@/lib/slugify';
-import { canEditBlogPost } from '@/lib/roles';
+import { canEditBlogPost, canChangeBlogAuthor, BLOG_AUTHOR_ROLES } from '@/lib/roles';
 
 /** Form sends `''` for “no category”; DB expects UUID or null. */
 function categoryIdOrNull(v) {
   if (v === null || v === undefined) return null;
   const s = String(v).trim();
   return s === '' ? null : s;
+}
+
+/** Only admins may reassign authorship; editors keep the current author. */
+async function resolveAuthorIdUpdate(requestedAuthorId, actor, currentAuthorId) {
+  if (!canChangeBlogAuthor(actor) || requestedAuthorId === undefined || requestedAuthorId === null) {
+    return { authorId: currentAuthorId };
+  }
+
+  const nextId = String(requestedAuthorId).trim();
+  if (!nextId) {
+    return { error: NextResponse.json({ error: 'Author is required.' }, { status: 400 }) };
+  }
+  if (nextId === currentAuthorId) {
+    return { authorId: currentAuthorId };
+  }
+
+  const placeholders = BLOG_AUTHOR_ROLES.map((_, i) => `$${i + 2}`).join(', ');
+  const result = await query(
+    `SELECT id FROM users
+     WHERE id = $1 AND is_active = 1 AND role IN (${placeholders})`,
+    [nextId, ...BLOG_AUTHOR_ROLES]
+  );
+
+  if (result.rowCount === 0) {
+    return { error: NextResponse.json({ error: 'Selected author is invalid or inactive.' }, { status: 400 }) };
+  }
+
+  return { authorId: nextId };
 }
 
 // GET /api/admin/blog/[id]
@@ -69,6 +97,7 @@ export async function PUT(request, { params }) {
       meta_description,
       seo_noindex,
       tags = [],
+      author_id: requestedAuthorId,
     } = body;
 
     const current = await query(`SELECT * FROM blog_posts WHERE id = $1`, [id]);
@@ -81,6 +110,9 @@ export async function PUT(request, { params }) {
     if (!canEditBlogPost(user, currentPost)) {
       return NextResponse.json({ error: 'Forbidden.' }, { status: 403 });
     }
+
+    const authorResolved = await resolveAuthorIdUpdate(requestedAuthorId, user, currentPost.author_id);
+    if (authorResolved.error) return authorResolved.error;
 
     const oldSlug = currentPost.slug;
 
@@ -133,8 +165,9 @@ export async function PUT(request, { params }) {
            meta_description = $11,
            seo_noindex      = COALESCE($12, seo_noindex),
            read_time_minutes = $13,
-           published_at     = $14
-         WHERE id = $15`,
+           published_at     = $14,
+           author_id        = $15
+         WHERE id = $16`,
         [
           title || null, nextSlug, content || null, excerpt || null,
           cover_image_url ?? currentPost.cover_image_url,
@@ -146,7 +179,7 @@ export async function PUT(request, { params }) {
           meta_title ?? currentPost.meta_title,
           meta_description ?? currentPost.meta_description,
           seo_noindex !== undefined ? (seo_noindex ? 1 : 0) : null,
-          readTime, publishedAt, id,
+          readTime, publishedAt, authorResolved.authorId, id,
         ]
       );
 

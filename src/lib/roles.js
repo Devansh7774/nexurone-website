@@ -61,3 +61,11 @@ export function canEditBlogPost(user, post) {
   if (user.role === ROLES.EDITOR) return post.author_id === user.id;
   return false;
 }
+
+/** Admins can reassign blog post authorship to another team member. */
+export function canChangeBlogAuthor(user) {
+  return canAccessFullAdmin(user);
+}
+
+/** Roles that may appear as a blog post author. */
+export const BLOG_AUTHOR_ROLES = [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.EDITOR];

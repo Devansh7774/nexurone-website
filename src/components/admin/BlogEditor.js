@@ -17,6 +17,7 @@ import { renderBlogMarkdown } from '@/lib/renderBlogMarkdown';
 import { prepareContentForVisual } from '@/lib/contentUtils';
 import { normalizeTags } from '@/lib/blogUtils';
 import { slugify } from '@/lib/slugify';
+import { canChangeBlogAuthor, roleLabel } from '@/lib/roles';
 
 function parseCategoryIds(post) {
   if (!post) return [];
@@ -225,10 +226,17 @@ function ToggleSwitch({ checked, onChange, label, description }) {
   );
 }
 
-export default function BlogEditor({ post = null, categories = [], currentUser = null }) {
+export default function BlogEditor({
+  post = null,
+  categories = [],
+  authors = [],
+  currentUser = null,
+}) {
   const router = useRouter();
   const { sidebarLeftClass } = useAdminShell();
   const isEdit = Boolean(post);
+  const showAuthorSelect = canChangeBlogAuthor(currentUser) && authors.length > 0;
+  const defaultAuthorId = post?.author_id || currentUser?.id || '';
 
   const [contentMode, setContentMode] = useState('visual');
   const visualEditorRef = useRef(null);
@@ -247,6 +255,7 @@ export default function BlogEditor({ post = null, categories = [], currentUser =
     meta_title: post?.meta_title || '',
     meta_description: post?.meta_description || '',
     seo_noindex: Boolean(post?.seo_noindex),
+    author_id: defaultAuthorId,
   });
   const initialCategoryIds = parseCategoryIds(post);
   const [categoryIds, setCategoryIds] = useState(initialCategoryIds);
@@ -275,6 +284,7 @@ export default function BlogEditor({ post = null, categories = [], currentUser =
       meta_title: post?.meta_title || '',
       meta_description: post?.meta_description || '',
       seo_noindex: Boolean(post?.seo_noindex),
+      author_id: defaultAuthorId,
     },
     tags: initialTagNames,
     categoryIds: initialCategoryIds,
@@ -464,6 +474,7 @@ export default function BlogEditor({ post = null, categories = [], currentUser =
           slug: data.post.slug,
           seo_noindex: Boolean(data.post.seo_noindex),
           status: nextStatus,
+          author_id: data.post.author_id || form.author_id,
         };
         setForm(updatedForm);
         setDirtyBaseline({ form: updatedForm, tags, categoryIds });
@@ -697,6 +708,35 @@ export default function BlogEditor({ post = null, categories = [], currentUser =
                     </button>
                   )}
                 </SectionCard>
+
+                {showAuthorSelect ? (
+                  <SectionCard
+                    title="Author"
+                    hint="Shown on the public blog post. Change this to reassign ownership."
+                    compact
+                  >
+                    <AdminSelect
+                      name="author_id"
+                      value={form.author_id}
+                      onChange={handleChange}
+                      placeholder="Select author"
+                    >
+                      {authors.map((author) => {
+                        const inactive = !author.is_active;
+                        const label = `${author.name}${inactive ? ' (inactive)' : ''} · ${roleLabel(author.role)}`;
+                        return (
+                          <option key={author.id} value={author.id}>
+                            {label}
+                          </option>
+                        );
+                      })}
+                    </AdminSelect>
+                  </SectionCard>
+                ) : post?.author_name ? (
+                  <SectionCard title="Author" compact>
+                    <p className="text-sm font-medium text-gray-900">{post.author_name}</p>
+                  </SectionCard>
+                ) : null}
 
                 <SectionCard title="Categories" hint="Select one or more. Shown as filter tabs on the blog page." compact>
                   {categories.length === 0 ? (

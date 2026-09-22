@@ -5,7 +5,7 @@ import { revalidateBlogPublic } from '@/lib/blog';
 import { linkPostTag, upsertBlogTag } from '@/lib/blogTags';
 import { syncPostCategories } from '@/lib/blogCategories';
 import { slugify, isValidSlug } from '@/lib/slugify';
-import { ROLES, canEditBlogPost } from '@/lib/roles';
+import { ROLES, canChangeBlogAuthor, BLOG_AUTHOR_ROLES } from '@/lib/roles';
 
 function estimateReadTime(content) {
   const words = (content ?? '').trim().split(/\s+/).filter(Boolean).length;
@@ -17,6 +17,26 @@ function categoryIdOrNull(v) {
   if (v === null || v === undefined) return null;
   const s = String(v).trim();
   return s === '' ? null : s;
+}
+
+/** Resolve which user owns the post. Only admins may assign another author. */
+async function resolveAuthorId(requestedAuthorId, actor) {
+  if (!canChangeBlogAuthor(actor) || !requestedAuthorId || requestedAuthorId === actor.id) {
+    return { authorId: actor.id };
+  }
+
+  const placeholders = BLOG_AUTHOR_ROLES.map((_, i) => `$${i + 2}`).join(', ');
+  const result = await query(
+    `SELECT id FROM users
+     WHERE id = $1 AND is_active = 1 AND role IN (${placeholders})`,
+    [requestedAuthorId, ...BLOG_AUTHOR_ROLES]
+  );
+
+  if (result.rowCount === 0) {
+    return { error: NextResponse.json({ error: 'Selected author is invalid or inactive.' }, { status: 400 }) };
+  }
+
+  return { authorId: requestedAuthorId };
 }
 
 // GET /api/admin/blog — list all posts (paginated)
@@ -97,11 +117,15 @@ export async function POST(request) {
       meta_description = null,
       seo_noindex = false,
       tags = [],
+      author_id: requestedAuthorId,
     } = body;
 
     if (!title?.trim()) {
       return NextResponse.json({ error: 'Title is required.' }, { status: 400 });
     }
+
+    const authorResolved = await resolveAuthorId(requestedAuthorId, user);
+    if (authorResolved.error) return authorResolved.error;
 
     const baseSlug = slugInput?.trim() ? slugify(slugInput) : slugify(title);
     if (!isValidSlug(baseSlug)) {
@@ -130,7 +154,7 @@ export async function POST(request) {
        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)`,
       [
         postId, title.trim(), slug, content, excerpt, cover_image_url, cover_image_alt,
-        user.id, categoryIds[0] || null, status, is_featured,
+        authorResolved.authorId, categoryIds[0] || null, status, is_featured,
         meta_title, meta_description, seo_noindex ? 1 : 0, readTime, publishedAt,
       ]
     );

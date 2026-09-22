@@ -2,7 +2,7 @@ import { redirect, notFound } from 'next/navigation';
 import { verifySession } from '@/lib/auth';
 import { query } from '@/lib/db';
 import { BLOG_TAGS_JSON, BLOG_CATEGORY_IDS_JSON } from '@/lib/sql';
-import { canEditBlogPost } from '@/lib/roles';
+import { canEditBlogPost, canChangeBlogAuthor, BLOG_AUTHOR_ROLES } from '@/lib/roles';
 import BlogEditor from '@/components/admin/BlogEditor';
 
 export const metadata = { title: 'Edit Post | Nexuron Admin' };
@@ -32,10 +32,25 @@ export default async function EditBlogPostPage({ params }) {
   const post = postResult.rows[0];
   if (!canEditBlogPost(user, post)) notFound();
 
+  let authors = [];
+  if (canChangeBlogAuthor(user)) {
+    const rolePlaceholders = BLOG_AUTHOR_ROLES.map((_, i) => `$${i + 1}`).join(', ');
+    const authorsResult = await query(
+      `SELECT id, name, email, role, is_active
+       FROM users
+       WHERE role IN (${rolePlaceholders})
+         AND (is_active = 1 OR id = $${BLOG_AUTHOR_ROLES.length + 1})
+       ORDER BY name ASC`,
+      [...BLOG_AUTHOR_ROLES, post.author_id]
+    );
+    authors = authorsResult.rows;
+  }
+
   return (
     <BlogEditor
       post={post}
       categories={categoriesResult.rows}
+      authors={authors}
       currentUser={user}
     />
   );
