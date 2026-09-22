@@ -15,19 +15,19 @@ const teamMembers = [
   },
   {
     name: 'Umesh',
-    role: 'CTO',
+    role: 'VP',
     image: 'https://pub-010e8de3204a4ed28c74880b1d5e91d3.r2.dev/nexuron-assets/umesh-kaka.png',
     email: 'Umesh@nexurontechnologies.com',
   },
   {
     name: 'Devansh',
-    role: 'VP of Technology',
+    role: 'CTO',
     image: 'https://pub-010e8de3204a4ed28c74880b1d5e91d3.r2.dev/Devansh-patel.png',
     email: 'Devansh@nexurontechnologies.com',
   },
   {
     name: 'Het',
-    role: 'Full Stack DEVELOPER',
+    role: 'Project Manager`',
     image: 'https://pub-010e8de3204a4ed28c74880b1d5e91d3.r2.dev/nexuron-assets/WhatsApp-Image-2025-09-19-at-10.36.35_a4108010.jpg',
   },
    {
