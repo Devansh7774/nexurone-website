@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 import { ensureContactQueriesTable } from '@/lib/contactQueries';
 import { isValidEmail } from '@/lib/validation';
+import { notifyNewInquiry } from '@/lib/notifyInquiry';
 
 export async function POST(request) {
   try {
@@ -35,6 +36,20 @@ export async function POST(request) {
       `SELECT id, created_at FROM contact_queries WHERE id = $1`,
       [id]
     );
+
+    await notifyNewInquiry({
+      subject: `New contact form: ${name}`,
+      title: 'New contact form submission',
+      replyTo: email,
+      rows: [
+        ['Name', name],
+        ['Email', email],
+        ['Phone', phone],
+        ['Message', message],
+        ['Source', 'Contact page'],
+        ['Query ID', id],
+      ],
+    });
 
     return NextResponse.json(
       { success: true, query: result.rows[0] },

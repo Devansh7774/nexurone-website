@@ -3,6 +3,7 @@ import { mkdir, writeFile } from 'fs/promises';
 import path from 'path';
 import { query } from '@/lib/db';
 import { ensureCareerApplicationsTable } from '@/lib/careerApplications';
+import { notifyNewInquiry } from '@/lib/notifyInquiry';
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
 const ALLOWED_MIME = new Set([
@@ -85,6 +86,22 @@ export async function POST(request) {
       `SELECT id, created_at FROM career_applications WHERE id = $1`,
       [id]
     );
+
+    await notifyNewInquiry({
+      subject: `New career application: ${role} — ${name}`,
+      title: 'New career application',
+      replyTo: email,
+      rows: [
+        ['Name', name],
+        ['Email', email],
+        ['Phone', phone],
+        ['Location', location],
+        ['Role', role],
+        ['Cover letter', coverLetter],
+        ['CV', cvFileName || 'Not attached'],
+        ['Application ID', id],
+      ],
+    });
 
     return NextResponse.json({ success: true, application: result.rows[0] }, { status: 201 });
   } catch (err) {

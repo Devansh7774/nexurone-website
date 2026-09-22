@@ -45,9 +45,9 @@ export function getMailFrom() {
 }
 
 /**
- * @param {{ to: string, subject: string, html: string, text?: string, devLogUrl?: string }} options
+ * @param {{ to: string, subject: string, html: string, text?: string, replyTo?: string, devLogUrl?: string }} options
  */
-export async function sendMail({ to, subject, html, text, devLogUrl }) {
+export async function sendMail({ to, subject, html, text, replyTo, devLogUrl }) {
   const transport = getTransporter();
 
   if (!transport) {
@@ -66,6 +66,7 @@ export async function sendMail({ to, subject, html, text, devLogUrl }) {
     subject,
     html,
     text: text || html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim(),
+    ...(replyTo ? { replyTo } : {}),
   });
 
   return { sent: true };
