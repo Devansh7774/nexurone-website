@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Send } from "lucide-react";
+import RecaptchaV2 from "@/components/forms/RecaptchaV2";
 
 export default function CareerForm() {
+  const recaptchaRef = useRef(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,6 +16,7 @@ export default function CareerForm() {
     coverLetter: "",
     file: null
   });
+  const [recaptchaToken, setRecaptchaToken] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState({ type: "", message: "" });
 
@@ -44,6 +47,12 @@ export default function CareerForm() {
       return;
     }
 
+    const token = recaptchaToken || recaptchaRef.current?.getValue() || "";
+    if (!token) {
+      setStatus({ type: "error", message: "Please complete the captcha." });
+      return;
+    }
+
     setIsSubmitting(true);
     setStatus({ type: "", message: "" });
 
@@ -55,6 +64,7 @@ export default function CareerForm() {
       payload.append("location", formData.location);
       payload.append("role", submittedRole);
       payload.append("coverLetter", formData.coverLetter);
+      payload.append("recaptchaToken", token);
       if (formData.file) payload.append("cvFile", formData.file);
 
       const res = await fetch("/api/public/career", {
@@ -64,6 +74,7 @@ export default function CareerForm() {
       const data = await res.json();
 
       if (!res.ok) {
+        recaptchaRef.current?.reset();
         setStatus({ type: "error", message: data.error || "Failed to submit application." });
         return;
       }
@@ -78,8 +89,10 @@ export default function CareerForm() {
         coverLetter: "",
         file: null,
       });
+      recaptchaRef.current?.reset();
       setStatus({ type: "success", message: "Application submitted successfully." });
     } catch {
+      recaptchaRef.current?.reset();
       setStatus({ type: "error", message: "Something went wrong. Please try again." });
     } finally {
       setIsSubmitting(false);
@@ -228,6 +241,8 @@ export default function CareerForm() {
                 Supported formats: PDF, DOC, DOCX. Max size: 2 MB.
               </p>
             </div>
+
+            <RecaptchaV2 ref={recaptchaRef} onChange={setRecaptchaToken} />
 
             {/* Submit Button */}
             <div>

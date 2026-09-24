@@ -4,6 +4,7 @@ import path from 'path';
 import { query } from '@/lib/db';
 import { ensureCareerApplicationsTable } from '@/lib/careerApplications';
 import { notifyNewInquiry } from '@/lib/notifyInquiry';
+import { getRequestIp, verifyRecaptchaToken } from '@/lib/recaptcha';
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
 const ALLOWED_MIME = new Set([
@@ -29,6 +30,7 @@ export async function POST(request) {
     const location = String(formData.get('location') || '').trim();
     const role = String(formData.get('role') || '').trim();
     const coverLetter = String(formData.get('coverLetter') || '').trim();
+    const recaptchaToken = String(formData.get('recaptchaToken') || '').trim();
     const cvFile = formData.get('cvFile');
 
     if (!name || !email || !location || !role || !coverLetter) {
@@ -39,6 +41,11 @@ export async function POST(request) {
     }
     if (!isValidEmail(email)) {
       return NextResponse.json({ error: 'Please enter a valid email.' }, { status: 400 });
+    }
+
+    const recaptcha = await verifyRecaptchaToken(recaptchaToken, getRequestIp(request));
+    if (!recaptcha.ok) {
+      return NextResponse.json({ error: recaptcha.error }, { status: 400 });
     }
 
     let cvFileUrl = null;

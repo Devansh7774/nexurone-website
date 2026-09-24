@@ -3,6 +3,7 @@ import { query } from '@/lib/db';
 import { ensureContactQueriesTable } from '@/lib/contactQueries';
 import { isValidEmail } from '@/lib/validation';
 import { notifyNewInquiry } from '@/lib/notifyInquiry';
+import { getRequestIp, verifyRecaptchaToken } from '@/lib/recaptcha';
 
 export async function POST(request) {
   try {
@@ -21,6 +22,11 @@ export async function POST(request) {
 
     if (!isValidEmail(email)) {
       return NextResponse.json({ error: 'Please enter a valid email.' }, { status: 400 });
+    }
+
+    const recaptcha = await verifyRecaptchaToken(body?.recaptchaToken, getRequestIp(request));
+    if (!recaptcha.ok) {
+      return NextResponse.json({ error: recaptcha.error }, { status: 400 });
     }
 
     await ensureContactQueriesTable();

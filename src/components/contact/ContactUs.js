@@ -1,16 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Send } from 'lucide-react';
 import ContactInfoItems from '@/components/contact/ContactInfoItems';
+import RecaptchaV2 from '@/components/forms/RecaptchaV2';
 
 export default function ContactUs() {
+  const recaptchaRef = useRef(null);
   const [form, setForm] = useState({
     name: '',
     email: '',
     phone: '',
     message: '',
   });
+  const [recaptchaToken, setRecaptchaToken] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState({ type: '', message: '' });
 
@@ -20,6 +23,12 @@ export default function ContactUs() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    const token = recaptchaToken || recaptchaRef.current?.getValue() || '';
+    if (!token) {
+      setStatus({ type: 'error', message: 'Please complete the captcha.' });
+      return;
+    }
+
     setIsSubmitting(true);
     setStatus({ type: '', message: '' });
 
@@ -27,21 +36,24 @@ export default function ContactUs() {
       const res = await fetch('/api/public/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, recaptchaToken: token }),
       });
 
       const data = await res.json();
       if (!res.ok) {
+        recaptchaRef.current?.reset();
         setStatus({ type: 'error', message: data.error || 'Failed to submit your query.' });
         return;
       }
 
       setForm({ name: '', email: '', phone: '', message: '' });
+      recaptchaRef.current?.reset();
       setStatus({
         type: 'success',
         message: 'Thanks! Your query has been submitted successfully.',
       });
     } catch {
+      recaptchaRef.current?.reset();
       setStatus({ type: 'error', message: 'Something went wrong. Please try again.' });
     } finally {
       setIsSubmitting(false);
@@ -135,6 +147,8 @@ export default function ContactUs() {
                   className="w-full border-b border-gray-200 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[#2563eb] transition-colors bg-transparent resize-none text-sm"
                 ></textarea>
               </div>
+
+              <RecaptchaV2 ref={recaptchaRef} onChange={setRecaptchaToken} />
 
               {/* Submit Button */}
               <div className="pt-2">
