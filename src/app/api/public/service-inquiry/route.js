@@ -3,6 +3,7 @@ import { query } from '@/lib/db';
 import { ensureContactQueriesTable } from '@/lib/contactQueries';
 import { isValidEmail } from '@/lib/validation';
 import { notifyNewInquiry } from '@/lib/notifyInquiry';
+import { getRequestIp, verifyRecaptchaToken } from '@/lib/recaptcha';
 
 export async function POST(request) {
   try {
@@ -30,6 +31,11 @@ export async function POST(request) {
 
     if (!message && !fieldOfWork) {
       return NextResponse.json({ error: 'Please tell us about your project.' }, { status: 400 });
+    }
+
+    const recaptcha = await verifyRecaptchaToken(body?.recaptchaToken, getRequestIp(request));
+    if (!recaptcha.ok) {
+      return NextResponse.json({ error: recaptcha.error }, { status: 400 });
     }
 
     const servicePath = serviceSlug ? `/services/${serviceSlug}` : '/services';

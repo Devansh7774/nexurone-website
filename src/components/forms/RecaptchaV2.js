@@ -6,33 +6,49 @@ import Script from 'next/script';
 const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 const SCRIPT_SRC = 'https://www.google.com/recaptcha/api.js?render=explicit';
 
-const RecaptchaV2 = forwardRef(function RecaptchaV2({ onChange }, ref) {
+function whenRecaptchaReady(callback) {
+  if (typeof window === 'undefined') return () => {};
+
+  if (window.grecaptcha?.ready) {
+    window.grecaptcha.ready(callback);
+    return () => {};
+  }
+
+  const timer = window.setInterval(() => {
+    if (window.grecaptcha?.ready) {
+      window.clearInterval(timer);
+      window.grecaptcha.ready(callback);
+    }
+  }, 100);
+
+  return () => window.clearInterval(timer);
+}
+
+const RecaptchaV2 = forwardRef(function RecaptchaV2({ onChange, theme = 'light' }, ref) {
   const containerRef = useRef(null);
   const widgetIdRef = useRef(null);
   const onChangeRef = useRef(onChange);
   onChangeRef.current = onChange;
 
   function renderWidget() {
-    if (!SITE_KEY || !containerRef.current || !window.grecaptcha?.ready) return;
+    if (!SITE_KEY || !containerRef.current || !window.grecaptcha?.render) return;
     if (widgetIdRef.current !== null) return;
+    if (containerRef.current.childElementCount > 0) return;
 
-    window.grecaptcha.ready(() => {
-      if (!containerRef.current || widgetIdRef.current !== null) return;
-      if (containerRef.current.childElementCount > 0) return;
-
-      widgetIdRef.current = window.grecaptcha.render(containerRef.current, {
-        sitekey: SITE_KEY,
-        callback: (token) => onChangeRef.current?.(token),
-        'expired-callback': () => onChangeRef.current?.(''),
-        'error-callback': () => onChangeRef.current?.(''),
-      });
+    widgetIdRef.current = window.grecaptcha.render(containerRef.current, {
+      sitekey: SITE_KEY,
+      theme,
+      callback: (token) => onChangeRef.current?.(token),
+      'expired-callback': () => onChangeRef.current?.(''),
+      'error-callback': () => onChangeRef.current?.(''),
     });
   }
 
   useEffect(() => {
-    renderWidget();
+    const stopWaiting = whenRecaptchaReady(renderWidget);
 
     return () => {
+      stopWaiting();
       if (widgetIdRef.current !== null && window.grecaptcha) {
         try {
           window.grecaptcha.reset(widgetIdRef.current);
@@ -45,7 +61,7 @@ const RecaptchaV2 = forwardRef(function RecaptchaV2({ onChange }, ref) {
         containerRef.current.innerHTML = '';
       }
     };
-  }, []);
+  }, [theme]);
 
   useImperativeHandle(ref, () => ({
     reset() {

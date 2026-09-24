@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Send } from "lucide-react";
 import ServiceSection from '@/components/services/ServiceSection';
 import ServiceSectionHeader from '@/components/services/ServiceSectionHeader';
 import ContactInfoItems from '@/components/contact/ContactInfoItems';
+import RecaptchaV2 from '@/components/forms/RecaptchaV2';
 import { SERVICE_CARD } from "@/components/services/servicePageLayout";
 
 const inputClass =
@@ -24,12 +25,14 @@ export default function ServiceInquirySection({
   successMessage = "Thank you. Our team will contact you shortly.",
 }) {
   const pathname = usePathname();
+  const recaptchaRef = useRef(null);
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
     message: "",
   });
+  const [recaptchaToken, setRecaptchaToken] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState({ type: "", message: "" });
 
@@ -62,6 +65,12 @@ export default function ServiceInquirySection({
       return;
     }
 
+    const token = recaptchaToken || recaptchaRef.current?.getValue() || "";
+    if (!token) {
+      setStatus({ type: "error", message: "Please complete the captcha." });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -76,22 +85,26 @@ export default function ServiceInquirySection({
           serviceSlug,
           hireSubject,
           serviceName,
+          recaptchaToken: token,
         }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
+        recaptchaRef.current?.reset();
         setStatus({ type: "error", message: data.error || "Failed to submit. Please try again." });
         return;
       }
 
       setForm({ name: "", email: "", phone: "", message: "" });
+      recaptchaRef.current?.reset();
       setStatus({
         type: "success",
         message: successMessage,
       });
     } catch {
+      recaptchaRef.current?.reset();
       setStatus({ type: "error", message: "Something went wrong. Please try again." });
     } finally {
       setIsSubmitting(false);
@@ -179,6 +192,8 @@ export default function ServiceInquirySection({
                 className={`${inputClass} resize-none`}
               />
             </div>
+
+            <RecaptchaV2 ref={recaptchaRef} onChange={setRecaptchaToken} />
 
             {status.message ? (
               <p
