@@ -42,6 +42,7 @@ export default function QueriesFilters({
   initialStatus = 'all',
   searchPlaceholder = 'Search name, email, phone, message…',
   searchAriaLabel = 'Search queries',
+  statusOptions = STATUS_OPTIONS,
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -162,7 +163,7 @@ export default function QueriesFilters({
         onChange={(e) => navigate({ status: e.target.value, page: 1 })}
         placeholder="Status"
       >
-        {STATUS_OPTIONS.map((opt) => (
+        {statusOptions.map((opt) => (
           <option key={opt.value} value={opt.value}>
             {opt.label}
           </option>

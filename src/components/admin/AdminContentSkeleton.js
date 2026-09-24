@@ -155,14 +155,16 @@ function BlogListSkeleton() {
         </div>
       </div>
 
-      <div className="mb-6 flex w-fit gap-1 rounded-2xl border border-slate-200/80 bg-white p-1 shadow-sm">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <Sk key={i} className="h-8 w-20 rounded-lg" />
-        ))}
+      <div className="mb-6 flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm sm:flex-row sm:flex-wrap sm:items-center">
+        <Sk className="h-10 min-w-0 flex-1 rounded-xl" />
+        <Sk className="h-10 w-48 rounded-xl" />
+        <Sk className="h-10 w-48 rounded-xl" />
+        <Sk className="h-10 w-40 rounded-xl" />
+        <Sk className="h-10 w-20 rounded-xl" />
       </div>
 
       <TableSkeleton
-        headers={['flex-[2]', 'w-24', 'w-24', 'w-20', 'w-16 ml-auto']}
+        headers={['flex-[2]', 'w-24', 'w-24', 'w-24', 'w-20', 'w-16 ml-auto']}
         rows={8}
         titleCol={0}
       />
