@@ -45,11 +45,11 @@ const teamMembers = [
   //   role: 'Devops Engineer',
   //   image: 'https://pub-010e8de3204a4ed28c74880b1d5e91d3.r2.dev/nexuron-assets/v4.jpg',
   // },
-  {
-    name: 'Tirth',
-    role: 'Business Development Executive',
-    image: 'https://pub-010e8de3204a4ed28c74880b1d5e91d3.r2.dev/team/tirth-nexuron.png',
-  },
+  // {
+  //   name: 'Tirth',
+  //   role: 'Business Development Executive',
+  //   image: 'https://pub-010e8de3204a4ed28c74880b1d5e91d3.r2.dev/team/tirth-nexuron.png',
+  // },
   {
     name: 'Shubh',
     role: 'TEAM LEAD',

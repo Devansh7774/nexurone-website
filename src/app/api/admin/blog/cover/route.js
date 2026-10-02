@@ -46,7 +46,9 @@ export async function POST(request) {
     const message =
       typeof err?.message === 'string' && err.message.startsWith('Missing required env var')
         ? 'R2 is not configured. Add R2 env vars to .env.local.'
-        : 'Upload failed.';
+        : err?.name === 'AccessDenied' || err?.Code === 'AccessDenied'
+          ? 'R2 denied the upload. The API token needs Object Read & Write on this bucket.'
+          : 'Upload failed.';
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
