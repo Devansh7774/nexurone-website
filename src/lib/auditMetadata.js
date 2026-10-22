@@ -126,6 +126,119 @@ export const AUDIT_PAGES = {
       'Custom AI development, LLM integration, and machine learning solutions by Nexuron Technologies.',
     imageAlt: 'AI and Machine Learning Development by Nexuron Technologies',
   },
+  '/services/ai-chatbot': {
+    title: 'AI Chatbot Development Company USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds AI chatbots for websites, WhatsApp, and customer support — trained on your business knowledge to qualify leads and resolve tickets 24/7.',
+    openGraphDescription:
+      'Website, WhatsApp, and customer support AI chatbots by Nexuron Technologies.',
+    twitterDescription: 'Build AI chatbots for web, WhatsApp, and support with Nexuron Technologies.',
+    imageAlt: 'AI Chatbot Development by Nexuron Technologies',
+  },
+  '/services/ai-agent': {
+    title: 'AI Agent Development Company USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies develops AI agents that take actions — booking appointments, updating CRM, handling orders, and running multi-step business workflows.',
+    openGraphDescription: 'Custom AI agents that book, update CRM, and handle orders.',
+    twitterDescription: 'Build action-taking AI agents with Nexuron Technologies.',
+    imageAlt: 'AI Agent Development by Nexuron Technologies',
+  },
+  '/services/llm-integration': {
+    title: 'LLM Integration Services USA | OpenAI, Claude, Gemini | Nexuron Technologies',
+    description:
+      'Nexuron Technologies integrates OpenAI, Claude, and Gemini into existing apps — copilots, summarization, smart search, and secure LLM APIs for businesses across the USA.',
+    openGraphDescription: 'Add OpenAI, Claude, and Gemini features to your existing applications.',
+    twitterDescription: 'LLM integration for existing apps by Nexuron Technologies.',
+    imageAlt: 'LLM Integration Services by Nexuron Technologies',
+  },
+  '/services/rag-knowledge-bots': {
+    title: 'RAG & Custom Knowledge Bots USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds RAG chatbots trained on your company documents — policies, manuals, and wikis — with citations and access control.',
+    openGraphDescription: 'Custom knowledge bots grounded in your company documents.',
+    twitterDescription: 'RAG and custom knowledge bots by Nexuron Technologies.',
+    imageAlt: 'RAG and Custom Knowledge Bots by Nexuron Technologies',
+  },
+  '/services/ai-workflow-automation': {
+    title: 'AI Workflow Automation USA | n8n, Make, Zapier | Nexuron Technologies',
+    description:
+      'Nexuron Technologies designs AI-powered workflow automation with n8n, Make, and Zapier — connecting CRM, support, and ops tools to remove repetitive work.',
+    openGraphDescription: 'AI workflow automation with n8n, Make, and Zapier.',
+    twitterDescription: 'Automate business workflows with AI and Nexuron Technologies.',
+    imageAlt: 'AI Workflow Automation by Nexuron Technologies',
+  },
+  '/services/generative-ai': {
+    title: 'Generative AI App Development USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds generative AI apps for content, image, and document generation with brand controls and human review workflows.',
+    openGraphDescription: 'Custom generative AI apps for content, images, and documents.',
+    twitterDescription: 'Generative AI application development by Nexuron Technologies.',
+    imageAlt: 'Generative AI App Development by Nexuron Technologies',
+  },
+  '/services/ai-voice-assistants': {
+    title: 'AI Voice Assistants & Call Handling USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds AI voice assistants for call handling, appointment booking, lead qualification, and live agent handoff.',
+    openGraphDescription: 'AI voice bots for calls, booking, and customer qualification.',
+    twitterDescription: 'AI voice assistants and call handling by Nexuron Technologies.',
+    imageAlt: 'AI Voice Assistants by Nexuron Technologies',
+  },
+  '/services/ai-consulting': {
+    title: 'AI Consulting & Integration USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies helps businesses start with AI — use-case discovery, roadmaps, vendor choices, and hands-on integration into your existing stack.',
+    openGraphDescription: 'AI consulting and integration for businesses ready to start.',
+    twitterDescription: 'Practical AI consulting and integration by Nexuron Technologies.',
+    imageAlt: 'AI Consulting and Integration by Nexuron Technologies',
+  },
+  '/industry/healthcare': {
+    title: 'Healthcare Software Development USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds secure healthcare software for clinics, pharmacies, and health-tech teams — patient engagement, compliance workflows, and integrations.',
+    openGraphDescription: 'Healthcare software and digital solutions by Nexuron Technologies.',
+    twitterDescription: 'Healthcare technology solutions by Nexuron Technologies.',
+    imageAlt: 'Healthcare Software Development by Nexuron Technologies',
+  },
+  '/industry/legal-tech': {
+    title: 'Legal Tech Software Development USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies develops legal tech platforms for contract and clause management, practice tools, and secure document workflows.',
+    openGraphDescription: 'Legal tech software for contracts, clauses, and practice operations.',
+    twitterDescription: 'Legal technology solutions by Nexuron Technologies.',
+    imageAlt: 'Legal Tech Software by Nexuron Technologies',
+  },
+  '/industry/travel-hospitality': {
+    title: 'Travel & Hospitality Software USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds travel and hospitality platforms — booking flows, operator tools, and guest engagement apps.',
+    openGraphDescription: 'Travel and hospitality technology by Nexuron Technologies.',
+    twitterDescription: 'Travel and hospitality software by Nexuron Technologies.',
+    imageAlt: 'Travel and Hospitality Software by Nexuron Technologies',
+  },
+  '/industry/construction': {
+    title: 'Construction Software Development USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies modernizes construction operations with resource tracking, time reporting, supplier workflows, and cloud applications.',
+    openGraphDescription: 'Construction software and legacy modernization by Nexuron Technologies.',
+    twitterDescription: 'Construction technology solutions by Nexuron Technologies.',
+    imageAlt: 'Construction Software by Nexuron Technologies',
+  },
+  '/industry/martech': {
+    title: 'MarTech Platform Development USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds marketing technology platforms, automation, and growth tooling for modern marketing teams.',
+    openGraphDescription: 'MarTech and growth platform development by Nexuron Technologies.',
+    twitterDescription: 'Marketing technology solutions by Nexuron Technologies.',
+    imageAlt: 'MarTech Platform Development by Nexuron Technologies',
+  },
+  '/industry/retail-ecommerce': {
+    title: 'Retail & E-commerce Development USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds retail and e-commerce solutions — storefronts, checkout, inventory ops, and AI-powered shopping experiences.',
+    openGraphDescription: 'Retail and e-commerce software by Nexuron Technologies.',
+    twitterDescription: 'Retail and e-commerce development by Nexuron Technologies.',
+    imageAlt: 'Retail and E-commerce Development by Nexuron Technologies',
+  },
   '/services/devops': {
     title: 'DevOps Consulting & Cloud Services USA | Nexuron Technologies',
     description:
@@ -381,6 +494,9 @@ function resolveImage(path, entry) {
   if (path.startsWith('/hire/')) {
     const slug = path.replace('/hire/', '');
     return getHireHeroImage(slug);
+  }
+  if (path.startsWith('/industry/')) {
+    return getServiceHeroImage('ai-ml');
   }
   return null;
 }

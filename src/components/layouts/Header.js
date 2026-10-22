@@ -7,16 +7,20 @@ import { usePathname } from 'next/navigation';
 import SmoothCollapse from '@/components/ui/SmoothCollapse';
 import {
   Monitor, ChevronDown,
-  BookOpen, Briefcase
+  BookOpen, Briefcase,
+  HeartPulse, Scale, Plane, HardHat, Megaphone, ShoppingBag,
 } from 'lucide-react';
+import { getIndustryNavItems } from '@/lib/industries';
 
 const SERVICE_ICONS_BASE = 'https://pub-010e8de3204a4ed28c74880b1d5e91d3.r2.dev/services/icons';
 const HIRE_ICONS_BASE = 'https://pub-010e8de3204a4ed28c74880b1d5e91d3.r2.dev/hire-developer/icons';
+const AI_ICONS_BASE = '/icons/ai';
 
 const serviceIcon = (slug) => `${SERVICE_ICONS_BASE}/${slug}.svg`;
 const hireIcon = (slug) => `${HIRE_ICONS_BASE}/${slug}.svg`;
 /** Use hire-developer icon when the same asset is not on services/icons yet */
 const serviceOrHireIcon = (slug) => hireIcon(slug);
+const aiIcon = (slug) => `${AI_ICONS_BASE}/${slug}.svg`;
 
 function ServiceMenuIcon({ icon: Icon, iconUrl, name, size = 'md' }) {
   const imgClass = size === 'sm' ? 'w-4 h-4' : 'w-[22px] h-[22px]';
@@ -73,7 +77,20 @@ const servicesMenu = [
     items: [
       { name: 'IOT Development', href: '/services/iot', iconUrl: serviceIcon('iot') },
       { name: 'DevOps', href: '/services/devops', iconUrl: serviceIcon('devops') },
-      { name: 'AI/ML', href: '/services/ai-ml', iconUrl: serviceIcon('ai-ml') },
+      { name: 'AI/ML', href: '/services/ai-ml', iconUrl: aiIcon('ai-ml') },
+    ]
+  },
+  {
+    title: 'AI DEVELOPMENT',
+    items: [
+      { name: 'AI Chatbot Development', href: '/services/ai-chatbot', iconUrl: aiIcon('chatbot') },
+      { name: 'AI Agent Development', href: '/services/ai-agent', iconUrl: aiIcon('agent') },
+      { name: 'LLM Integration', href: '/services/llm-integration', iconUrl: aiIcon('llm') },
+      { name: 'RAG & Knowledge Bots', href: '/services/rag-knowledge-bots', iconUrl: aiIcon('rag') },
+      { name: 'AI Workflow Automation', href: '/services/ai-workflow-automation', iconUrl: aiIcon('workflow') },
+      { name: 'Generative AI Apps', href: '/services/generative-ai', iconUrl: aiIcon('generative') },
+      { name: 'AI Voice Assistants', href: '/services/ai-voice-assistants', iconUrl: aiIcon('voice') },
+      { name: 'AI Consulting', href: '/services/ai-consulting', iconUrl: aiIcon('consulting') },
     ]
   },
   {
@@ -85,6 +102,20 @@ const servicesMenu = [
     ]
   }
 ];
+
+const INDUSTRY_ICONS = {
+  '/industry/healthcare': HeartPulse,
+  '/industry/legal-tech': Scale,
+  '/industry/travel-hospitality': Plane,
+  '/industry/construction': HardHat,
+  '/industry/martech': Megaphone,
+  '/industry/retail-ecommerce': ShoppingBag,
+};
+
+const industryMenu = getIndustryNavItems().map((item) => ({
+  ...item,
+  icon: INDUSTRY_ICONS[item.href] ?? Briefcase,
+}));
 
 const hireMenu = [
   [
@@ -129,7 +160,7 @@ const hireMenu = [
     {
       title: 'AI/ML & AUTOMATION',
       items: [
-        { name: 'AI Development Experts', href: '/hire/ai-developer', iconUrl: serviceIcon('ai-ml') },
+        { name: 'AI Development Experts', href: '/hire/ai-developer', iconUrl: aiIcon('ai-ml') },
         { name: 'n8n Development Experts', href: '/hire/n8n-developer', iconUrl: hireIcon('n8n') },
         { name: 'Zapier Development Expert', href: '/hire/zapier-developer', iconUrl: hireIcon('zapier') },
         { name: 'Python Development Experts', href: '/hire/python-aiml-developer', iconUrl: hireIcon('python') },
@@ -265,8 +296,8 @@ function HeaderInner() {
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services', menu: 'services' },
     { name: 'Hire Developer', href: '/hire', menu: 'hire' },
+    { name: 'Industry', href: '/industry/healthcare', menu: 'industry' },
     { name: 'Resources', href: '/case-study', menu: 'resources' },
-    { name: 'About Us', href: '/about-us' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -274,6 +305,7 @@ function HeaderInner() {
     pathname === item.href ||
     (item.name === 'Services' && pathname.startsWith('/services')) ||
     (item.name === 'Hire Developer' && pathname.startsWith('/hire')) ||
+    (item.name === 'Industry' && pathname.startsWith('/industry')) ||
     (item.name === 'Resources' &&
       (pathname.startsWith('/case-study') || pathname.startsWith('/insights')));
 
@@ -314,7 +346,7 @@ function HeaderInner() {
             </Link>
           </div>
 
-          <nav className="hidden lg:flex items-center space-x-8 lg:space-x-10 h-full" aria-label="Primary">
+          <nav className="hidden lg:flex items-center space-x-6 lg:space-x-8 h-full" aria-label="Primary">
             {navItems.map((item) => {
               const isActive = isNavItemActive(item);
               const hasMenu = Boolean(item.menu);
@@ -405,22 +437,22 @@ function HeaderInner() {
           >
             <div className="pt-2">
               <div className="bg-white shadow-[0_12px_40px_rgba(0,0,0,0.08)] rounded-b-xl border border-gray-100 border-t-0">
-                <div className="flex justify-between p-10 xl:p-12">
+                <div className="flex justify-between gap-4 p-8 xl:gap-6 xl:p-10">
                   {servicesMenu.map((column) => (
-                    <div key={column.title} className="flex flex-col flex-1">
-                      <h3 className="text-[15px] font-bold text-gray-900 mb-6 uppercase tracking-wider">
+                    <div key={column.title} className="flex min-w-0 flex-1 flex-col">
+                      <h3 className="mb-4 text-[13px] font-bold uppercase tracking-wider text-gray-900 xl:text-[14px]">
                         {column.title}
                       </h3>
-                      <ul className="space-y-5">
+                      <ul className="space-y-3.5">
                         {column.items.map((service) => (
                           <li key={service.href}>
                             <Link
                               href={service.href}
                               onClick={closeDropdown}
-                              className="flex items-center gap-3 text-gray-600 hover:text-blue-600 transition-colors duration-200 group/item"
+                              className="group/item flex items-center gap-2.5 text-gray-600 transition-colors duration-200 hover:text-blue-600"
                             >
-                              <ServiceMenuIcon icon={service.icon} iconUrl={service.iconUrl} name={service.name} />
-                              <span className="text-[15px] font-medium">{service.name}</span>
+                              <ServiceMenuIcon icon={service.icon} iconUrl={service.iconUrl} name={service.name} size="sm" />
+                              <span className="text-[13px] font-medium leading-snug xl:text-[14px]">{service.name}</span>
                             </Link>
                           </li>
                         ))}
@@ -471,6 +503,49 @@ function HeaderInner() {
                     </div>
                   ))}
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Industry menu */}
+          <div
+            className="nav-dropdown-panel absolute left-1/2 -translate-x-1/2 top-0"
+            data-open={openMenu === 'industry'}
+          >
+            <div className="pt-2">
+              <div className="min-w-[320px] rounded-xl border border-gray-100 bg-white py-2 shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+                {industryMenu.map((industry) => {
+                  const Icon = industry.icon;
+                  const isIndustryActive =
+                    pathname === industry.href || pathname.startsWith(`${industry.href}/`);
+                  return (
+                    <Link
+                      key={industry.href}
+                      href={industry.href}
+                      onClick={closeDropdown}
+                      className={`group/item flex items-start gap-3 px-4 py-3 transition-colors duration-200 ${
+                        isIndustryActive ? 'bg-blue-50' : 'hover:bg-gray-50'
+                      }`}
+                    >
+                      <Icon
+                        className={`mt-0.5 h-5 w-5 flex-shrink-0 transition-colors duration-200 ${
+                          isIndustryActive ? 'text-blue-600' : 'text-gray-700 group-hover/item:text-blue-600'
+                        }`}
+                        strokeWidth={1.5}
+                      />
+                      <div>
+                        <span
+                          className={`block text-[15px] font-medium ${
+                            isIndustryActive ? 'text-blue-600' : 'text-gray-800 group-hover/item:text-blue-600'
+                          }`}
+                        >
+                          {industry.name}
+                        </span>
+                        <span className="mt-0.5 block text-[12px] text-gray-500">{industry.description}</span>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -610,6 +685,44 @@ function HeaderInner() {
                           </div>
                         ))}
                       </div>
+                    </SmoothCollapse>
+                  </li>
+                );
+              }
+
+              if (item.menu === 'industry') {
+                const open = mobileOpenSection === 'industry';
+                return (
+                  <li key={item.name} className="border-b border-gray-100 pb-1">
+                    <button
+                      type="button"
+                      onClick={() => toggleMobileSection('industry')}
+                      className={`flex min-h-[44px] w-full items-center justify-between py-3 text-left text-[16px] font-medium transition-colors duration-200 ${
+                        isActive ? 'text-blue-600' : 'text-gray-800 hover:text-blue-600'
+                      }`}
+                      aria-expanded={open}
+                    >
+                      <span>Industry</span>
+                      <Chevron open={open} className={open ? 'text-blue-600' : 'text-gray-500'} />
+                    </button>
+                    <SmoothCollapse open={open}>
+                      <ul className="pl-2 pb-2">
+                        {industryMenu.map((industry) => (
+                          <li key={industry.href}>
+                            <Link
+                              href={industry.href}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className={`block py-2 text-[14px] transition-colors duration-200 ${
+                                pathname === industry.href || pathname.startsWith(`${industry.href}/`)
+                                  ? 'text-blue-600 font-medium'
+                                  : 'text-gray-600 hover:text-blue-600'
+                              }`}
+                            >
+                              {industry.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     </SmoothCollapse>
                   </li>
                 );
