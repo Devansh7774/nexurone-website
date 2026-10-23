@@ -85,12 +85,12 @@ const servicesMenu = [
     items: [
       { name: 'AI Chatbot Development', href: '/services/ai-chatbot', iconUrl: aiIcon('chatbot') },
       { name: 'AI Agent Development', href: '/services/ai-agent', iconUrl: aiIcon('agent') },
-      { name: 'LLM Integration', href: '/services/llm-integration', iconUrl: aiIcon('llm') },
-      { name: 'RAG & Knowledge Bots', href: '/services/rag-knowledge-bots', iconUrl: aiIcon('rag') },
+      { name: 'LLM Integration (OpenAI, Claude, Gemini)', href: '/services/llm-integration', iconUrl: aiIcon('llm') },
+      { name: 'RAG & Custom Knowledge Bots', href: '/services/rag-knowledge-bots', iconUrl: aiIcon('rag') },
       { name: 'AI Workflow Automation', href: '/services/ai-workflow-automation', iconUrl: aiIcon('workflow') },
-      { name: 'Generative AI Apps', href: '/services/generative-ai', iconUrl: aiIcon('generative') },
+      { name: 'Generative AI App Development', href: '/services/generative-ai', iconUrl: aiIcon('generative') },
       { name: 'AI Voice Assistants', href: '/services/ai-voice-assistants', iconUrl: aiIcon('voice') },
-      { name: 'AI Consulting', href: '/services/ai-consulting', iconUrl: aiIcon('consulting') },
+      { name: 'AI Consulting & Integration', href: '/services/ai-consulting', iconUrl: aiIcon('consulting') },
     ]
   },
   {
