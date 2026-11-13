@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import SmoothCollapse from '@/components/ui/SmoothCollapse';
 import {
   Monitor, ChevronDown,
-  BookOpen, Briefcase,
+  BookOpen, Briefcase, Users,
   HeartPulse, Scale, Plane, HardHat, Megaphone, ShoppingBag,
 } from 'lucide-react';
 import { getIndustryNavItems } from '@/lib/industries';
@@ -179,6 +179,7 @@ const hireMenu = [
 const resourcesMenu = [
   { name: 'Case Study', href: '/case-study', icon: Briefcase, description: 'Portfolio & project stories' },
   { name: 'Insights', href: '/insights', icon: BookOpen, description: 'Articles & updates' },
+  { name: 'Career', href: '/career', icon: Users, description: 'Open roles & join the team' },
 ];
 
 const HOVER_CLOSE_DELAY = 120;
@@ -307,7 +308,9 @@ function HeaderInner() {
     (item.name === 'Hire Developer' && pathname.startsWith('/hire')) ||
     (item.name === 'Industry' && pathname.startsWith('/industry')) ||
     (item.name === 'Resources' &&
-      (pathname.startsWith('/case-study') || pathname.startsWith('/insights')));
+      (pathname.startsWith('/case-study') ||
+        pathname.startsWith('/insights') ||
+        pathname.startsWith('/career')));
 
   const linkColor = (active) =>
     active ? 'text-blue-600' : 'text-gray-800 hover:text-blue-600';

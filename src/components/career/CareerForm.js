@@ -182,6 +182,9 @@ export default function CareerForm() {
                   }}
                 >
                   <option value="" disabled>Select Role</option>
+                  <option value="Expert Business Development Executive (BDE)">
+                    Expert Business Development Executive (BDE)
+                  </option>
                   <option value="Junior React.js Developer">Junior React.js Developer</option>
                   <option value="Junior MERN Stack Developer">Junior MERN Stack Developer</option>
                   <option value="Other">Other</option>
