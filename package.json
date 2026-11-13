@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node init && next dev",
+    "dev": "next dev",
     "prebuild": "node scripts/security-clean.js",
-    "build": "node init && next build",
-    "start": "node init && next start -H 0.0.0.0",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0",
     "lint": "eslint",
     "seed": "node scripts/seed.js",
     "db:migrate": "node scripts/migrate.js",
