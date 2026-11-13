@@ -16,7 +16,14 @@
  *   npm run build  (prebuild runs the scanner)
  */
 
-import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs';
+import {
+  readFileSync,
+  writeFileSync,
+  existsSync,
+  readdirSync,
+  statSync,
+  unlinkSync,
+} from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -38,7 +45,7 @@ export default config;
 `;
 
 /**
- * Patterns matching the Hostinger-injected malware family and similar payloads.
+ * Patterns matching the Hostinger / PolinRider malware family and similar payloads.
  * Keep these specific enough to avoid false positives in normal app code.
  */
 const MALWARE_PATTERNS = [
@@ -54,9 +61,20 @@ const MALWARE_PATTERNS = [
   { id: 'createRequire-hijack', re: /createRequire\(import\.meta\.url\)[\s\S]{0,200}export default config[\s\S]{50,}_0x/ },
   { id: 'appended-after-export', re: /export default config;\s*global\./ },
   { id: 'appended-after-export-obf', re: /export default config;\s*\S{0,40}_0x[a-f0-9]+/ },
+  // PolinRider loader reinfection (init + postcss padding + obfuscated decoder)
+  { id: 'polinrider-spin', re: /\bspin\s*=\s*f\(b,\s*["']spin["']\)/ },
+  { id: 'polinrider-splitlane', re: /\bsplitLane\s*=\s*f\(c,\s*["']splitLane["']\)/ },
+  { id: 'polinrider-peel', re: /\bpeel\s*=\s*f\(d,\s*["']peel["']\)/ },
+  { id: 'polinrider-z-marker', re: /var\s+z\s*=\s*['"]-\*?\d+/ },
+  { id: 'polinrider-nx-sx', re: /\bNX\s*=\s*\[[\d,\s]+\],\s*SX\s*=\s*\[[\d,\s]+\]/ },
+  { id: 'appended-after-export-polin', re: /export default config;[\s\S]{0,400}var\s+z\s*=\s*['"]-/ },
+  { id: 'appended-after-init-polin', re: /\binit\(\);[\s\S]{0,800}var\s+z\s*=\s*['"]-/ },
 ];
 
 const HIGH_RISK_FILES = [
+  'init',
+  'api.js',
+  'config.bat',
   'postcss.config.mjs',
   'postcss.config.js',
   'postcss.config.cjs',
@@ -75,6 +93,9 @@ const HIGH_RISK_FILES = [
   'proxy.js',
   'src/proxy.js',
 ];
+
+/** Files that are only used as malware droppers in this repo — delete on --fix. */
+const DELETE_ON_INFECTION = new Set(['init', 'api.js', 'config.bat']);
 
 const SCAN_EXTENSIONS = new Set(['.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx', '.json']);
 const SKIP_DIRS = new Set([
@@ -113,7 +134,8 @@ function walk(dir, out = []) {
     if (!entry.isFile()) continue;
 
     const ext = path.extname(entry.name).toLowerCase();
-    if (!SCAN_EXTENSIONS.has(ext)) continue;
+    const isDropperName = DELETE_ON_INFECTION.has(entry.name);
+    if (!SCAN_EXTENSIONS.has(ext) && !isDropperName) continue;
 
     // Skip huge vendor dumps
     try {
@@ -154,13 +176,22 @@ function checkPackageJsonScripts() {
   const findings = [];
   const suspicious =
     /(curl\s|wget\s|powershell\s+-|Invoke-Expression|node\s+-e\s+.*_0x|eval\(|base64\s+-d|\/tmp\/|\\\\temp\\\\)/i;
+  const polinLoader = /\bnode\s+init\b/i;
 
   for (const [name, value] of Object.entries(scripts)) {
-    if (suspicious.test(String(value))) {
+    const text = String(value);
+    if (polinLoader.test(text)) {
+      findings.push({
+        file: 'package.json',
+        hits: [`polinrider-loader:${name}`],
+        detail: text.slice(0, 160),
+        fixable: true,
+      });
+    } else if (suspicious.test(text)) {
       findings.push({
         file: 'package.json',
         hits: [`suspicious-script:${name}`],
-        detail: String(value).slice(0, 160),
+        detail: text.slice(0, 160),
       });
     }
   }
@@ -183,6 +214,41 @@ function checkPackageJsonScripts() {
 
 function restorePostcss(filePath) {
   writeFileSync(filePath, CLEAN_POSTCSS, 'utf8');
+}
+
+function stripPolinLoaderFromPackageJson() {
+  const pkgPath = path.join(ROOT, 'package.json');
+  if (!existsSync(pkgPath)) return false;
+
+  const raw = readFileSync(pkgPath, 'utf8');
+  const pkg = JSON.parse(raw);
+  const scripts = pkg.scripts || {};
+  let changed = false;
+
+  for (const [name, value] of Object.entries(scripts)) {
+    const next = String(value)
+      .replace(/\bnode\s+init\s*&&\s*/gi, '')
+      .replace(/\s*&&\s*node\s+init\b/gi, '')
+      .replace(/^\s*node\s+init\s*$/gi, '')
+      .trim();
+    if (next !== String(value).trim()) {
+      scripts[name] = next || value;
+      changed = true;
+    }
+  }
+
+  if (!changed) return false;
+
+  // Keep compact JSON style used in this repo.
+  writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`, 'utf8');
+  return true;
+}
+
+function deleteIfPresent(relPath) {
+  const full = path.join(ROOT, relPath);
+  if (!existsSync(full)) return false;
+  unlinkSync(full);
+  return true;
 }
 
 function main() {
@@ -214,6 +280,10 @@ function main() {
       restorePostcss(full);
       cleaned.push(relPath);
       console.log(`FIXED  ${relPath}  [${hits.join(', ')}]`);
+    } else if (DO_FIX && DELETE_ON_INFECTION.has(relPath)) {
+      deleteIfPresent(relPath);
+      cleaned.push(relPath);
+      console.log(`DELETED ${relPath}  [${hits.join(', ')}]`);
     } else {
       console.log(`INFECTED  ${relPath}  [${hits.join(', ')}]`);
     }
@@ -246,18 +316,36 @@ function main() {
     if (!hits.length) continue;
 
     infected.push({ file: r, hits });
-    console.log(`INFECTED  ${r}  [${hits.join(', ')}]`);
+
+    const base = path.basename(r);
+    if (DO_FIX && DELETE_ON_INFECTION.has(base) && !r.includes('/')) {
+      deleteIfPresent(r);
+      cleaned.push(r);
+      console.log(`DELETED ${r}  [${hits.join(', ')}]`);
+    } else {
+      console.log(`INFECTED  ${r}  [${hits.join(', ')}]`);
+    }
   }
 
-  // 3) package.json lifecycle scripts
+  // 3) package.json lifecycle scripts / PolinRider loader hooks
   const scriptFindings = checkPackageJsonScripts();
+  let packageFixed = false;
   for (const finding of scriptFindings) {
-    if (STRICT) {
+    const isLoader = finding.hits.some((h) => h.startsWith('polinrider-loader:'));
+    if (isLoader || STRICT) {
       infected.push(finding);
-      console.log(`SUSPECT   ${finding.file}  [${finding.hits.join(', ')}]`);
+      console.log(`${isLoader ? 'INFECTED' : 'SUSPECT'}  ${finding.file}  [${finding.hits.join(', ')}]`);
     } else {
       warnings.push(finding);
       console.log(`WARN      ${finding.file}  [${finding.hits.join(', ')}]`);
+    }
+  }
+
+  if (DO_FIX && scriptFindings.some((f) => f.fixable)) {
+    packageFixed = stripPolinLoaderFromPackageJson();
+    if (packageFixed) {
+      cleaned.push('package.json');
+      console.log('FIXED  package.json  [stripped node init loader]');
     }
   }
 
@@ -283,7 +371,12 @@ function main() {
   console.log(`Cleaned:  ${cleaned.length}`);
   console.log(`Warnings: ${warnings.length}`);
 
-  const stillBad = infected.filter((item) => !cleaned.includes(item.file));
+  const stillBad = infected.filter((item) => {
+    if (cleaned.includes(item.file)) return false;
+    // package.json loader findings are cleared when scripts were rewritten
+    if (item.file === 'package.json' && packageFixed) return false;
+    return true;
+  });
   if (stillBad.length) {
     console.error('');
     console.error('Security scan FAILED. Do not deploy until cleaned.');
