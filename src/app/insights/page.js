@@ -5,7 +5,7 @@ import { getBlogPosts, getBlogCategories, getPublishedBlogPostCount } from '@/li
 import AuthorByline from '@/components/blog/AuthorByline';
 import BlogCategoryBadges from '@/components/blog/BlogCategoryBadges';
 import BlogCategoryFilter from '@/components/blog/BlogCategoryFilter';
-
+import { normalizeCopyDashes } from '@/lib/renderBlogMarkdown';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
@@ -70,7 +70,7 @@ export default async function BlogPage({ searchParams }) {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#00102A] mb-4 tracking-tight">
             Insights
           </h1>
-          <p className="text-base md:text-lg text-gray-500 max-w-2xl">
+          <p className="text-base md:text-lg text-gray-500 max-w-2xl leading-relaxed">
             Insights, tutorials, and updates from the Nexuron Technologies team. Learn how to build better digital products.
           </p>
         </div>
@@ -225,13 +225,13 @@ function BlogCard({ post }) {
 
         <Link href={`/insights/${post.slug}`} className="mb-2.5">
           <h2 className="text-[18px] font-bold text-[#00102A] leading-snug line-clamp-2 group-hover:text-[#2667ff] transition-colors">
-            {post.title}
+            {normalizeCopyDashes(post.title)}
           </h2>
         </Link>
 
         {post.excerpt ? (
           <p className="text-[14px] text-gray-500 leading-relaxed line-clamp-2 mb-5">
-            {post.excerpt}
+            {normalizeCopyDashes(post.excerpt)}
           </p>
         ) : (
           <div className="mb-5" />

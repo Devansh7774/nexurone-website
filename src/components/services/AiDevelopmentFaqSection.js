@@ -4,12 +4,15 @@ import { useState } from 'react';
 import ServiceFaqShell from '@/components/services/ServiceFaqShell';
 import { Plus, Minus } from 'lucide-react';
 
-export default function AiDevelopmentFaqSection({ serviceName, faqs }) {
+export default function AiDevelopmentFaqSection({ serviceName, faqs, description }) {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
     <ServiceFaqShell
-      description={`Common questions about our ${serviceName} services, from scope and timeline to integrations and safety.`}
+      description={
+        description ??
+        `Common questions about our ${serviceName} services, from scope and timeline to integrations and safety.`
+      }
     >
       {faqs.map((faq, index) => {
         const isOpen = openIndex === index;

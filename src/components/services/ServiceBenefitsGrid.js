@@ -12,11 +12,12 @@ export default function ServiceBenefitsGrid({
   title,
   description,
   benefits = [],
+  bg = 'muted',
 }) {
   const headingId = 'service-benefits-heading';
 
   return (
-    <ServiceSection bg="muted" ariaLabelledBy={headingId}>
+    <ServiceSection bg={bg} ariaLabelledBy={headingId}>
       <ServiceSectionHeader
         id={headingId}
         eyebrow={eyebrow}

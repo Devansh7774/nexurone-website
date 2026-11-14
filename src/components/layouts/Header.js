@@ -446,7 +446,7 @@ function HeaderInner() {
                 <div className="flex justify-between gap-4 p-8 xl:gap-6 xl:p-10">
                   {servicesMenu.map((column) => (
                     <div key={column.title} className="flex min-w-0 flex-1 flex-col">
-                      <h3 className="mb-4 text-[13px] font-bold uppercase tracking-wider text-gray-900 xl:text-[14px]">
+                      <h3 className="mb-5 text-[13px] font-bold uppercase tracking-wider text-gray-900 xl:text-[14px] leading-snug">
                         {column.title}
                       </h3>
                       <ul className="space-y-3.5">
@@ -504,7 +504,7 @@ function HeaderInner() {
                     <div key={colIdx} className="flex flex-col gap-10 min-w-0">
                       {column.map((section) => (
                         <div key={section.title}>
-                          <h3 className="text-[15px] font-bold text-gray-900 mb-5 uppercase tracking-wide">
+                          <h3 className="text-[15px] font-bold text-gray-900 mb-5 uppercase tracking-wide leading-snug">
                             {section.title}
                           </h3>
                           <ul className="space-y-3.5">
@@ -541,7 +541,7 @@ function HeaderInner() {
             data-open={openMenu === 'industry'}
           >
             <div className="pt-2">
-              <div className="grid grid-cols-2 grid-rows-7 grid-flow-col gap-x-2 rounded-xl border border-gray-100 bg-white p-3 shadow-[0_12px_40px_rgba(0,0,0,0.08)] min-w-[520px]">
+              <div className="grid grid-cols-2 grid-flow-col grid-rows-[repeat(7,auto)] gap-x-2 gap-y-1 rounded-xl border border-gray-100 bg-white p-3 shadow-[0_12px_40px_rgba(0,0,0,0.08)] min-w-[520px]">
                 {industryMenu.map((industry) => {
                   const Icon = industry.icon;
                   const isIndustryActive =
@@ -562,7 +562,7 @@ function HeaderInner() {
                         strokeWidth={1.5}
                       />
                       <span
-                        className={`text-[14px] font-medium ${
+                        className={`text-[14px] font-medium leading-snug ${
                           isIndustryActive ? 'text-blue-600' : 'text-gray-800 group-hover/item:text-blue-600'
                         }`}
                       >

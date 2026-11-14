@@ -103,6 +103,29 @@ function containsHtmlMarkup(content) {
 }
 
 /**
+ * Site copy rule: no em dashes / double-hyphen punctuation.
+ * Keep idiomatic numeric ranges with en dashes (e.g. 48–72, $500–$5,000).
+ */
+export function normalizeCopyDashes(text) {
+  if (!text || typeof text !== 'string') return text || '';
+  return text
+    .replace(/\s*—\s*/g, ': ')
+    .replace(/—/g, ': ')
+    .replace(/\s+--\s+/g, ': ')
+    .replace(/([A-Za-z])\s*–\s*([A-Za-z])/g, '$1: $2')
+    .replace(/:\s*:/g, ':')
+    .replace(/ {2,}/g, ' ');
+}
+
+/** Apply dash normalization only to text nodes, leave tags/attributes alone. */
+function normalizeHtmlCopyDashes(html) {
+  return html.replace(/(^|>)([^<]*)/g, (match, prefix, text) => {
+    if (!text) return match;
+    return prefix + normalizeCopyDashes(text);
+  });
+}
+
+/**
  * Turn stored post body (HTML from visual editor, or Markdown) into safe HTML.
  */
 export function renderBlogMarkdown(markdown) {
@@ -112,9 +135,10 @@ export function renderBlogMarkdown(markdown) {
 
   // Visual editor + design blocks: sanitize HTML directly (do not run through marked)
   if (containsHtmlMarkup(trimmed)) {
-    return sanitizeHtml(trimmed, SANITIZE_OPTIONS);
+    return normalizeHtmlCopyDashes(sanitizeHtml(trimmed, SANITIZE_OPTIONS));
   }
 
   const html = marked.parse(trimmed, { async: false });
-  return typeof html === 'string' ? sanitizeHtml(html, SANITIZE_OPTIONS) : '';
+  if (typeof html !== 'string') return '';
+  return normalizeHtmlCopyDashes(sanitizeHtml(html, SANITIZE_OPTIONS));
 }

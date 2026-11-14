@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { FolderOpen, Hash, Newspaper, Search } from 'lucide-react';
 import { formatBlogDate } from '@/lib/blogUtils';
+import { normalizeCopyDashes } from '@/lib/renderBlogMarkdown';
 import BlogSearch from '@/components/blog/BlogSearch';
 
 function SidebarCard({ title, icon: Icon, children }) {
@@ -59,7 +60,7 @@ export default function BlogPostSidebar({
                   </span>
                   <span className="min-w-0">
                     <span className="block text-[14px] font-semibold text-gray-800 leading-snug line-clamp-2 group-hover:text-[#2667ff] transition-colors">
-                      {post.title}
+                      {normalizeCopyDashes(post.title)}
                     </span>
                     {post.published_at && (
                       <span className="block text-[12px] text-gray-400 mt-1.5">

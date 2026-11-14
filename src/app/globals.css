@@ -456,8 +456,27 @@
     display: block;
     font-size: 1.25rem !important;
     font-weight: 600 !important;
+    line-height: 1.4 !important;
     color: #00102a !important;
     margin: 1.25rem 0 0.5rem !important;
+  }
+
+  .blog-content h5 {
+    display: block;
+    font-size: 1.125rem !important;
+    font-weight: 700 !important;
+    line-height: 1.45 !important;
+    color: #00102a !important;
+    margin: 1.25rem 0 0.5rem !important;
+  }
+
+  .blog-content h6 {
+    display: block;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    line-height: 1.5 !important;
+    color: #00102a !important;
+    margin: 1rem 0 0.5rem !important;
   }
 
   .blog-content p {
@@ -466,6 +485,46 @@
     font-weight: 400 !important;
     margin: 0 0 1.25rem !important;
     line-height: 1.8 !important;
+  }
+
+  /* Migrated posts ship Tailwind -mb-* / Elementor margin:0; keep spacing stable */
+  .blog-content :is(h1, h2, h3, h4, h5, h6) + :is(p, ul, ol, blockquote, table, pre, div) {
+    margin-top: 0.25rem;
+  }
+
+  /*
+   * Elementor exports bake pixel heights into .e-con-inner (from WP layout).
+   * Our prose font-size/line-height !important rules make text taller than those
+   * heights, so sections overflow into the next one. Force natural flow.
+   */
+  .blog-content .elementor-element,
+  .blog-content .elementor-widget,
+  .blog-content .e-con,
+  .blog-content .e-con-inner {
+    display: block !important;
+    flex: none !important;
+    flex-flow: unset !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    max-width: 100%;
+    min-width: 0;
+    position: relative;
+    overflow: visible !important;
+  }
+
+  .blog-content .elementor-widget-heading {
+    margin: 1.5rem 0 0.35rem;
+  }
+
+  .blog-content .elementor-widget-text-editor > :first-child {
+    margin-top: 0 !important;
+  }
+
+  .blog-content::after {
+    content: '';
+    display: table;
+    clear: both;
   }
 
   .blog-content a {

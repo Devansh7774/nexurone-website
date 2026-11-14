@@ -10,11 +10,12 @@ export default function ServiceCapabilitiesList({
   title,
   description,
   capabilities = [],
+  bg = 'muted',
 }) {
   const headingId = 'service-capabilities-heading';
 
   return (
-    <ServiceSection bg="muted" ariaLabelledBy={headingId}>
+    <ServiceSection bg={bg} ariaLabelledBy={headingId}>
       <ServiceSectionHeader
         id={headingId}
         eyebrow={eyebrow}

@@ -6,14 +6,28 @@ import {
   ClipboardList,
   Code2,
   Rocket,
-  CheckCircle2,
+  Sparkles,
+  Workflow,
+  Database,
+  Bot,
+  Target,
 } from 'lucide-react';
 import PageHero from '@/components/ui/PageHero';
 import ServiceInquirySection from '@/components/services/ServiceInquirySection';
 import ServiceOverview from '@/components/services/ServiceOverview';
+import ServiceSolutionsGrid from '@/components/services/ServiceSolutionsGrid';
+import ServiceBenefitsGrid from '@/components/services/ServiceBenefitsGrid';
+import ServiceCapabilitiesList from '@/components/services/ServiceCapabilitiesList';
 import ServiceProcessSection from '@/components/services/ServiceProcessSection';
 import ServiceDifferentiators from '@/components/services/ServiceDifferentiators';
+import AiDevelopmentFaqSection from '@/components/services/AiDevelopmentFaqSection';
+import IndustryCaseStudiesSection from '@/components/industry/IndustryCaseStudiesSection';
+import IndustryRelatedSection from '@/components/industry/IndustryRelatedSection';
+import IndustryVisualMosaic from '@/components/industry/IndustryVisualMosaic';
+import IndustryChallengesSection from '@/components/industry/IndustryChallengesSection';
+import IndustryHowTechnologyHelps from '@/components/industry/IndustryHowTechnologyHelps';
 import { getIndustry } from '@/lib/industries';
+import { getIndustryImages } from '@/lib/industryImages';
 import { getServiceHeroImage, getServiceOverviewImage } from '@/lib/serviceHeroImages';
 
 const PROCESS_STEPS = [
@@ -76,23 +90,44 @@ const DIFFERENTIATORS = [
   },
 ];
 
+const SOLUTION_ICONS = [Building2, Layers3, ShieldCheck, Rocket, Sparkles, Workflow];
+const USE_CASE_ICONS = [Target, Workflow, Bot, Database, Sparkles, Building2];
+const OVERVIEW_ICONS = [Building2, Layers3, ShieldCheck, Rocket, Bot, Database];
+
 export default function IndustryPage({ slug }) {
   const industry = getIndustry(slug);
   if (!industry) return null;
 
-  const heroImage = getServiceHeroImage('ai-ml');
-  const overviewImage = getServiceOverviewImage('ai-ml');
+  const visuals = getIndustryImages(slug);
+  const heroImage = visuals?.hero ?? getServiceHeroImage('ai-ml');
+  const overviewImage = visuals?.overview ?? getServiceOverviewImage('ai-ml');
+  const howWeHelpImage = visuals?.overview ?? overviewImage;
+  const hasCaseStudies = Boolean(industry.caseStudySlugs?.length);
 
   const overviewItems = industry.focusAreas.map((item, index) => ({
     ...item,
-    icon: [Building2, Layers3, ShieldCheck, Rocket][index % 4],
+    icon: OVERVIEW_ICONS[index % OVERVIEW_ICONS.length],
   }));
+
+  const useCases = (industry.useCases?.length ? industry.useCases : []).map((item, index) => ({
+    ...item,
+    icon: USE_CASE_ICONS[index % USE_CASE_ICONS.length],
+  }));
+
+  const solutions = (industry.solutions?.length ? industry.solutions : industry.focusAreas).map(
+    (item, index) => ({
+      ...item,
+      icon: SOLUTION_ICONS[index % SOLUTION_ICONS.length],
+      image: visuals?.solutions?.[index],
+      imageAlt: `${item.title} in ${industry.name}`,
+    })
+  );
 
   return (
     <main>
       <PageHero
         image={heroImage}
-        imageAlt={`${industry.name} technology solutions`}
+        imageAlt={visuals?.heroAlt ?? `${industry.name} technology solutions`}
         imagePosition="object-right"
         title={industry.heroTitle}
         description={industry.heroDescription}
@@ -102,57 +137,126 @@ export default function IndustryPage({ slug }) {
 
       <ServiceOverview
         bg="white"
-        eyebrow="What we do"
+        eyebrow="How we help"
         title={industry.overviewTitle}
         titleHighlight={industry.overviewHighlight}
         description={industry.overviewDescription}
         imageSrc={overviewImage}
-        imageAlt={`Nexuron team delivering ${industry.name} solutions`}
+        imageAlt={visuals?.overviewAlt ?? `Nexuron team delivering ${industry.name} solutions`}
         items={overviewItems}
       />
 
-      <section className="bg-[#F5F7FA] py-16 lg:py-24">
-        <div className="mx-auto max-w-[1340px] px-4 sm:px-6 lg:px-8">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-blue-600">
-            Outcomes
-          </p>
-          <h2 className="max-w-3xl text-3xl font-bold text-gray-900 lg:text-4xl">
-            What teams in {industry.name.toLowerCase()} typically gain
-          </h2>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
-            {industry.outcomes.map((outcome) => (
-              <li
-                key={outcome}
-                className="flex items-start gap-3 rounded-xl bg-white p-5 shadow-sm"
-              >
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-600" />
-                <span className="text-[15px] leading-relaxed text-gray-700">{outcome}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <IndustryChallengesSection
+        industryName={industry.name}
+        challenges={industry.challenges}
+        description={industry.challengesDescription}
+        bg="muted"
+      />
+
+      <IndustryVisualMosaic
+        industryName={industry.name}
+        visuals={visuals?.mosaic ?? []}
+        bg="white"
+      />
+
+      {useCases.length ? (
+        <ServiceSolutionsGrid
+          bg="muted"
+          eyebrow="Use cases"
+          title={
+            industry.useCasesTitle ||
+            `Relevant ${industry.name.toLowerCase()} use cases`
+          }
+          description={
+            industry.useCasesDescription ||
+            `Specific situations where technology changes outcomes for ${industry.name.toLowerCase()} teams.`
+          }
+          solutions={useCases}
+        />
+      ) : null}
+
+      <ServiceSolutionsGrid
+        bg="white"
+        eyebrow="Solutions"
+        title={`Solutions we build for ${industry.name.toLowerCase()} businesses`}
+        description={`Product and platform work shaped around ${industry.name.toLowerCase()} workflows, not generic software templates.`}
+        solutions={solutions}
+      />
+
+      <ServiceBenefitsGrid
+        bg="muted"
+        eyebrow="Key benefits"
+        title={`Benefits for ${industry.name.toLowerCase()} organizations`}
+        description={`What ${industry.name.toLowerCase()} teams gain when software fits their real operations, customers, and constraints.`}
+        benefits={industry.benefits}
+      />
+
+      <IndustryHowTechnologyHelps
+        industryName={industry.name}
+        title={industry.howWeHelpTitle}
+        description={industry.howWeHelpDescription}
+        points={industry.howWeHelp}
+        imageSrc={howWeHelpImage}
+        imageAlt={visuals?.overviewAlt ?? `${industry.name} technology in practice`}
+        bg="white"
+      />
+
+      {industry.technologies?.length ? (
+        <ServiceCapabilitiesList
+          bg="muted"
+          eyebrow="Capabilities"
+          title={`Technology capabilities for ${industry.name.toLowerCase()}`}
+          description={`Platforms, integrations, and AI applications we apply when they create measurable value in ${industry.name.toLowerCase()}.`}
+          capabilities={industry.technologies}
+        />
+      ) : null}
+
+      <IndustryCaseStudiesSection
+        industryName={industry.name}
+        caseStudySlugs={industry.caseStudySlugs}
+        bg="white"
+      />
+
+      <IndustryRelatedSection
+        industryName={industry.name}
+        relatedSlugs={industry.relatedSlugs}
+        bg={hasCaseStudies ? 'muted' : 'white'}
+      />
 
       <ServiceProcessSection
-        bg="white"
+        bg={hasCaseStudies ? 'white' : 'muted'}
         eyebrow="Delivery process"
         title={`How we deliver for ${industry.name}`}
-        description="A transparent process from discovery through launch and ongoing improvement."
+        description={`A transparent process shaped around ${industry.name.toLowerCase()} discovery, build milestones, and launch readiness.`}
         steps={PROCESS_STEPS}
       />
 
       <ServiceDifferentiators
-        bg="muted"
+        bg={hasCaseStudies ? 'muted' : 'white'}
         eyebrow="Why Nexuron"
         title={`Why ${industry.name} teams work with us`}
-        description="Beyond the build: this is what partnership with Nexuron looks like."
+        description={`Partnership built around ${industry.name.toLowerCase()} domain reality, secure delivery, and long-term iteration.`}
         items={DIFFERENTIATORS}
       />
 
+      {industry.faqs?.length ? (
+        <AiDevelopmentFaqSection
+          serviceName={industry.name}
+          faqs={industry.faqs}
+          description={`Common questions about our ${industry.name.toLowerCase()} work, from scope and integrations to AI and delivery.`}
+        />
+      ) : null}
+
       <ServiceInquirySection
-        bg="white"
+        bg="muted"
         serviceName={`${industry.name} Solutions`}
         hireSubject={`${industry.name} Project`}
+        eyebrow="Next step"
+        title={industry.ctaTitle ?? `Let's discuss your ${industry.name.toLowerCase()} project`}
+        description={
+          industry.ctaDescription ??
+          `Tell us about your ${industry.name.toLowerCase()} goals. We will help you scope a practical build plan.`
+        }
       />
     </main>
   );

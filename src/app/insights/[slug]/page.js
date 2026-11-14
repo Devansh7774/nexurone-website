@@ -10,7 +10,7 @@ import {
   getBlogTags,
   getAdjacentBlogPosts,
 } from '@/lib/blog';
-import { renderBlogMarkdown } from '@/lib/renderBlogMarkdown';
+import { renderBlogMarkdown, normalizeCopyDashes } from '@/lib/renderBlogMarkdown';
 import { buildArticleJsonLd, buildBlogPostMetadata, resolveCoverAlt, getBlogPostUrl } from '@/lib/blogSeo';
 import { normalizeTags } from '@/lib/blogUtils';
 import AuthorByline from '@/components/blog/AuthorByline';
@@ -75,8 +75,8 @@ export default async function BlogPostPage({ params }) {
             size="lg"
           />
         )}
-        <h1 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#00102A] mb-5 leading-tight tracking-tight">
-          {post.title}
+        <h1 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#00102A] mb-6 leading-snug tracking-tight">
+          {normalizeCopyDashes(post.title)}
         </h1>
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-6 text-[13px] font-medium text-gray-500">
           {formattedDate && (

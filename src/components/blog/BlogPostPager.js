@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { normalizeCopyDashes } from '@/lib/renderBlogMarkdown';
 
 export default function BlogPostPager({ prev = null, next = null }) {
   return (
@@ -15,7 +16,7 @@ export default function BlogPostPager({ prev = null, next = null }) {
               Previous
             </span>
             <span className="text-[15px] font-semibold text-[#00102A] leading-snug line-clamp-2 group-hover:text-[#2667ff]">
-              {prev.title}
+              {normalizeCopyDashes(prev.title)}
             </span>
             {prev.category_name && (
               <span className="text-[12px] text-gray-500">{prev.category_name}</span>
@@ -37,7 +38,7 @@ export default function BlogPostPager({ prev = null, next = null }) {
               <ArrowRight className="w-3.5 h-3.5" />
             </span>
             <span className="text-[15px] font-semibold text-[#00102A] leading-snug line-clamp-2 group-hover:text-[#2667ff]">
-              {next.title}
+              {normalizeCopyDashes(next.title)}
             </span>
             {next.category_name && (
               <span className="text-[12px] text-gray-500">{next.category_name}</span>
