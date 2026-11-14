@@ -372,10 +372,12 @@ function HeaderInner() {
               const isOpen = openMenu === item.menu;
 
               if (hasMenu) {
+                const isResources = item.menu === 'resources';
+
                 return (
                   <div
                     key={item.name}
-                    className="h-full flex items-center"
+                    className={`h-full flex items-center ${isResources ? 'relative' : ''}`}
                     onMouseEnter={() => openDropdown(item.menu)}
                     onMouseLeave={scheduleCloseDropdown}
                   >
@@ -389,6 +391,57 @@ function HeaderInner() {
                       {item.name}
                       <Chevron open={isOpen} className={chevronColor(isActive, isOpen)} />
                     </button>
+
+                    {isResources ? (
+                      <div
+                        className="nav-dropdown-panel absolute left-0 top-full z-50"
+                        data-open={openMenu === 'resources'}
+                      >
+                        <div className="pt-1">
+                          <div className="min-w-[280px] rounded-xl border border-gray-100 bg-white py-2 shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+                            {resourcesMenu.map((resource) => {
+                              const Icon = resource.icon;
+                              const isResourceActive =
+                                pathname === resource.href ||
+                                pathname.startsWith(`${resource.href}/`);
+                              return (
+                                <Link
+                                  key={resource.href}
+                                  href={resource.href}
+                                  onClick={closeDropdown}
+                                  className={`group/item flex items-start gap-3 px-4 py-3 transition-colors duration-200 ${
+                                    isResourceActive ? 'bg-blue-50' : 'hover:bg-gray-50'
+                                  }`}
+                                >
+                                  <Icon
+                                    className={`mt-0.5 h-5 w-5 flex-shrink-0 transition-colors duration-200 ${
+                                      isResourceActive
+                                        ? 'text-blue-600'
+                                        : 'text-gray-700 group-hover/item:text-blue-600'
+                                    }`}
+                                    strokeWidth={1.5}
+                                  />
+                                  <div>
+                                    <span
+                                      className={`block text-[15px] font-medium ${
+                                        isResourceActive
+                                          ? 'text-blue-600'
+                                          : 'text-gray-800 group-hover/item:text-blue-600'
+                                      }`}
+                                    >
+                                      {resource.name}
+                                    </span>
+                                    <span className="mt-0.5 block text-[12px] text-gray-500">
+                                      {resource.description}
+                                    </span>
+                                  </div>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
                 );
               }
@@ -575,48 +628,6 @@ function HeaderInner() {
             </div>
           </div>
 
-          {/* Resources menu */}
-          <div
-            className="nav-dropdown-panel absolute left-1/2 -translate-x-1/2 top-0"
-            data-open={openMenu === 'resources'}
-          >
-            <div className="pt-2">
-              <div className="bg-white shadow-[0_12px_40px_rgba(0,0,0,0.08)] rounded-xl border border-gray-100 py-2 min-w-[280px]">
-                {resourcesMenu.map((resource) => {
-                  const Icon = resource.icon;
-                  const isResourceActive =
-                    pathname === resource.href || pathname.startsWith(`${resource.href}/`);
-                  return (
-                    <Link
-                      key={resource.href}
-                      href={resource.href}
-                      onClick={closeDropdown}
-                      className={`flex items-start gap-3 px-4 py-3 transition-colors duration-200 group/item ${
-                        isResourceActive ? 'bg-blue-50' : 'hover:bg-gray-50'
-                      }`}
-                    >
-                      <Icon
-                        className={`w-5 h-5 mt-0.5 flex-shrink-0 transition-colors duration-200 ${
-                          isResourceActive ? 'text-blue-600' : 'text-gray-700 group-hover/item:text-blue-600'
-                        }`}
-                        strokeWidth={1.5}
-                      />
-                      <div>
-                        <span
-                          className={`block text-[15px] font-medium ${
-                            isResourceActive ? 'text-blue-600' : 'text-gray-800 group-hover/item:text-blue-600'
-                          }`}
-                        >
-                          {resource.name}
-                        </span>
-                        <span className="block text-[12px] text-gray-500 mt-0.5">{resource.description}</span>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
