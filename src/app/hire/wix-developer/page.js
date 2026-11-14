@@ -21,7 +21,7 @@ const WHY_HIRE = {
   title: 'Why Hire Wix Developers From Nexuron Technologies?',
   imageAlt: 'Nexuron Wix development team',
   description:
-    "Behind every high performing Wix website is a team that obsesses over the details most developers skip — design quality, performance, SEO, and long-term maintainability. That's the standard we hold ourselves to, on every project, for every client.",
+    "Behind every high performing Wix website is a team that obsesses over the details most developers skip, design quality, performance, SEO, and long-term maintainability. That's the standard we hold ourselves to, on every project, for every client.",
   benefits: [
     'Experienced Wix Developers',
     'Custom Website Design & Development',

@@ -129,7 +129,7 @@ export const AUDIT_PAGES = {
   '/services/ai-chatbot': {
     title: 'AI Chatbot Development Company USA | Nexuron Technologies',
     description:
-      'Nexuron Technologies builds AI chatbots for websites, WhatsApp, and customer support — trained on your business knowledge to qualify leads and resolve tickets 24/7.',
+      'Nexuron Technologies builds AI chatbots for websites, WhatsApp, and customer support. Trained on your business knowledge to qualify leads and resolve tickets 24/7.',
     openGraphDescription:
       'Website, WhatsApp, and customer support AI chatbots by Nexuron Technologies.',
     twitterDescription: 'Build AI chatbots for web, WhatsApp, and support with Nexuron Technologies.',
@@ -138,7 +138,7 @@ export const AUDIT_PAGES = {
   '/services/ai-agent': {
     title: 'AI Agent Development Company USA | Nexuron Technologies',
     description:
-      'Nexuron Technologies develops AI agents that take actions — booking appointments, updating CRM, handling orders, and running multi-step business workflows.',
+      'Nexuron Technologies develops AI agents that take actions: booking appointments, updating CRM, handling orders, and running multi-step business workflows.',
     openGraphDescription: 'Custom AI agents that book, update CRM, and handle orders.',
     twitterDescription: 'Build action-taking AI agents with Nexuron Technologies.',
     imageAlt: 'AI Agent Development by Nexuron Technologies',
@@ -146,7 +146,7 @@ export const AUDIT_PAGES = {
   '/services/llm-integration': {
     title: 'LLM Integration Services USA | OpenAI, Claude, Gemini | Nexuron Technologies',
     description:
-      'Nexuron Technologies integrates OpenAI, Claude, and Gemini into existing apps — copilots, summarization, smart search, and secure LLM APIs for businesses across the USA.',
+      'Nexuron Technologies integrates OpenAI, Claude, and Gemini into existing apps: copilots, summarization, smart search, and secure LLM APIs for businesses across the USA.',
     openGraphDescription: 'Add OpenAI, Claude, and Gemini features to your existing applications.',
     twitterDescription: 'LLM integration for existing apps by Nexuron Technologies.',
     imageAlt: 'LLM Integration Services by Nexuron Technologies',
@@ -154,7 +154,7 @@ export const AUDIT_PAGES = {
   '/services/rag-knowledge-bots': {
     title: 'RAG & Custom Knowledge Bots USA | Nexuron Technologies',
     description:
-      'Nexuron Technologies builds RAG chatbots trained on your company documents — policies, manuals, and wikis — with citations and access control.',
+      'Nexuron Technologies builds RAG chatbots trained on your company documents (policies, manuals, and wikis) with citations and access control.',
     openGraphDescription: 'Custom knowledge bots grounded in your company documents.',
     twitterDescription: 'RAG and custom knowledge bots by Nexuron Technologies.',
     imageAlt: 'RAG and Custom Knowledge Bots by Nexuron Technologies',
@@ -162,7 +162,7 @@ export const AUDIT_PAGES = {
   '/services/ai-workflow-automation': {
     title: 'AI Workflow Automation USA | n8n, Make, Zapier | Nexuron Technologies',
     description:
-      'Nexuron Technologies designs AI-powered workflow automation with n8n, Make, and Zapier — connecting CRM, support, and ops tools to remove repetitive work.',
+      'Nexuron Technologies designs AI-powered workflow automation with n8n, Make, and Zapier, connecting CRM, support, and ops tools to remove repetitive work.',
     openGraphDescription: 'AI workflow automation with n8n, Make, and Zapier.',
     twitterDescription: 'Automate business workflows with AI and Nexuron Technologies.',
     imageAlt: 'AI Workflow Automation by Nexuron Technologies',
@@ -186,7 +186,7 @@ export const AUDIT_PAGES = {
   '/services/ai-consulting': {
     title: 'AI Consulting & Integration USA | Nexuron Technologies',
     description:
-      'Nexuron Technologies helps businesses start with AI — use-case discovery, roadmaps, vendor choices, and hands-on integration into your existing stack.',
+      'Nexuron Technologies helps businesses start with AI: use-case discovery, roadmaps, vendor choices, and hands-on integration into your existing stack.',
     openGraphDescription: 'AI consulting and integration for businesses ready to start.',
     twitterDescription: 'Practical AI consulting and integration by Nexuron Technologies.',
     imageAlt: 'AI Consulting and Integration by Nexuron Technologies',
@@ -194,7 +194,7 @@ export const AUDIT_PAGES = {
   '/industry/healthcare': {
     title: 'Healthcare Software Development USA | Nexuron Technologies',
     description:
-      'Nexuron Technologies builds secure healthcare software for clinics, pharmacies, and health-tech teams — patient engagement, compliance workflows, and integrations.',
+      'Nexuron Technologies builds secure healthcare software for clinics, pharmacies, and health-tech teams: patient engagement, compliance workflows, and integrations.',
     openGraphDescription: 'Healthcare software and digital solutions by Nexuron Technologies.',
     twitterDescription: 'Healthcare technology solutions by Nexuron Technologies.',
     imageAlt: 'Healthcare Software Development by Nexuron Technologies',
@@ -208,12 +208,12 @@ export const AUDIT_PAGES = {
     imageAlt: 'Legal Tech Software by Nexuron Technologies',
   },
   '/industry/travel-hospitality': {
-    title: 'Travel & Hospitality Software USA | Nexuron Technologies',
+    title: 'Travel & Tourism Software USA | Nexuron Technologies',
     description:
-      'Nexuron Technologies builds travel and hospitality platforms — booking flows, operator tools, and guest engagement apps.',
-    openGraphDescription: 'Travel and hospitality technology by Nexuron Technologies.',
-    twitterDescription: 'Travel and hospitality software by Nexuron Technologies.',
-    imageAlt: 'Travel and Hospitality Software by Nexuron Technologies',
+      'Nexuron Technologies builds travel and tourism platforms: booking flows, operator tools, and traveler engagement apps.',
+    openGraphDescription: 'Travel and tourism technology by Nexuron Technologies.',
+    twitterDescription: 'Travel and tourism software by Nexuron Technologies.',
+    imageAlt: 'Travel and Tourism Software by Nexuron Technologies',
   },
   '/industry/construction': {
     title: 'Construction Software Development USA | Nexuron Technologies',
@@ -232,12 +232,100 @@ export const AUDIT_PAGES = {
     imageAlt: 'MarTech Platform Development by Nexuron Technologies',
   },
   '/industry/retail-ecommerce': {
-    title: 'Retail & E-commerce Development USA | Nexuron Technologies',
+    title: 'Ecommerce Development USA | Nexuron Technologies',
     description:
-      'Nexuron Technologies builds retail and e-commerce solutions — storefronts, checkout, inventory ops, and AI-powered shopping experiences.',
-    openGraphDescription: 'Retail and e-commerce software by Nexuron Technologies.',
-    twitterDescription: 'Retail and e-commerce development by Nexuron Technologies.',
-    imageAlt: 'Retail and E-commerce Development by Nexuron Technologies',
+      'Nexuron Technologies builds ecommerce solutions: storefronts, checkout, inventory ops, and AI-powered shopping experiences.',
+    openGraphDescription: 'Ecommerce software by Nexuron Technologies.',
+    twitterDescription: 'Ecommerce development by Nexuron Technologies.',
+    imageAlt: 'Ecommerce Development by Nexuron Technologies',
+  },
+  '/industry/education': {
+    title: 'Education Software Development USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds education software for schools, universities, and edtech teams: learning platforms, campus systems, and student engagement.',
+    openGraphDescription: 'Education technology solutions by Nexuron Technologies.',
+    twitterDescription: 'Education software by Nexuron Technologies.',
+    imageAlt: 'Education Software Development by Nexuron Technologies',
+  },
+  '/industry/real-estate': {
+    title: 'Real Estate Software Development USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds real estate software for listings, brokerage tools, and property operations platforms.',
+    openGraphDescription: 'Real estate technology by Nexuron Technologies.',
+    twitterDescription: 'Real estate software by Nexuron Technologies.',
+    imageAlt: 'Real Estate Software by Nexuron Technologies',
+  },
+  '/industry/fitness': {
+    title: 'Fitness Software Development USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds fitness and wellness software: member apps, booking systems, and gym operator tools.',
+    openGraphDescription: 'Fitness technology solutions by Nexuron Technologies.',
+    twitterDescription: 'Fitness software by Nexuron Technologies.',
+    imageAlt: 'Fitness Software by Nexuron Technologies',
+  },
+  '/industry/media-entertainment': {
+    title: 'Media & Entertainment Software USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds media and entertainment platforms for content, streaming, and audience engagement.',
+    openGraphDescription: 'Media and entertainment technology by Nexuron Technologies.',
+    twitterDescription: 'Media and entertainment software by Nexuron Technologies.',
+    imageAlt: 'Media and Entertainment Software by Nexuron Technologies',
+  },
+  '/industry/automotive': {
+    title: 'Automotive Software Development USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds automotive software for dealer platforms, service workflows, and customer experiences.',
+    openGraphDescription: 'Automotive technology solutions by Nexuron Technologies.',
+    twitterDescription: 'Automotive software by Nexuron Technologies.',
+    imageAlt: 'Automotive Software by Nexuron Technologies',
+  },
+  '/industry/insurance': {
+    title: 'Insurance Software Development USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds insurance software for policy, claims, and broker workflows.',
+    openGraphDescription: 'Insurance technology solutions by Nexuron Technologies.',
+    twitterDescription: 'Insurance software by Nexuron Technologies.',
+    imageAlt: 'Insurance Software by Nexuron Technologies',
+  },
+  '/industry/banking-finance': {
+    title: 'Banking & Finance Software USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds banking and finance software: onboarding, payments, and secure customer platforms.',
+    openGraphDescription: 'Banking and finance technology by Nexuron Technologies.',
+    twitterDescription: 'Banking and finance software by Nexuron Technologies.',
+    imageAlt: 'Banking and Finance Software by Nexuron Technologies',
+  },
+  '/industry/design-architecture': {
+    title: 'Design & Architecture Software USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds software for design and architecture firms: project delivery, client portals, and portfolios.',
+    openGraphDescription: 'Design and architecture technology by Nexuron Technologies.',
+    twitterDescription: 'Design and architecture software by Nexuron Technologies.',
+    imageAlt: 'Design and Architecture Software by Nexuron Technologies',
+  },
+  '/industry/logistics': {
+    title: 'Logistics Software Development USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds logistics software for fleet, warehouse, and shipment visibility platforms.',
+    openGraphDescription: 'Logistics technology solutions by Nexuron Technologies.',
+    twitterDescription: 'Logistics software by Nexuron Technologies.',
+    imageAlt: 'Logistics Software by Nexuron Technologies',
+  },
+  '/industry/sports': {
+    title: 'Sports Software Development USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds sports technology for fan apps, club platforms, and event operations.',
+    openGraphDescription: 'Sports technology solutions by Nexuron Technologies.',
+    twitterDescription: 'Sports software by Nexuron Technologies.',
+    imageAlt: 'Sports Software by Nexuron Technologies',
+  },
+  '/industry/apparel-fashion': {
+    title: 'Apparel & Fashion Software USA | Nexuron Technologies',
+    description:
+      'Nexuron Technologies builds apparel and fashion technology: brand storefronts, commerce, and retail experience platforms.',
+    openGraphDescription: 'Apparel and fashion technology by Nexuron Technologies.',
+    twitterDescription: 'Apparel and fashion software by Nexuron Technologies.',
+    imageAlt: 'Apparel and Fashion Software by Nexuron Technologies',
   },
   '/services/devops': {
     title: 'DevOps Consulting & Cloud Services USA | Nexuron Technologies',

@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Strategic visual design',
     description:
-      'We design with your business goals in mind — not just aesthetics, but communication that converts.',
+      'We design with your business goals in mind: not just aesthetics, but communication that converts.',
   },
   {
     icon: ShieldCheck,
@@ -181,7 +181,7 @@ export default function GraphicDesignPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply graphic design"
-        description="We have delivered design work across corporate, retail, and marketing domains — here are the areas we know best."
+        description="We have delivered design work across corporate, retail, and marketing domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function GraphicDesignPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for graphic design"
-        description="Beyond the visuals — this is what working with our design team actually looks like."
+        description="Beyond the visuals: this is what working with our design team actually looks like."
         items={DIFFERENTIATORS}
       />
 

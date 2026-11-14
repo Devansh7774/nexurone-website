@@ -9,7 +9,7 @@ const faqs = [
   {
     question: 'What types of Flutter projects do you take on?',
     answer:
-      'We build MVPs, full product releases, and enterprise apps — including on-demand platforms, fintech products, e-commerce apps, and internal field tools. We also support existing Flutter codebases that need new features or performance improvements.',
+      'We build MVPs, full product releases, and enterprise apps, including on-demand platforms, fintech products, e-commerce apps, and internal field tools. We also support existing Flutter codebases that need new features or performance improvements.',
   },
   {
     question: 'Can you work with our existing design or backend?',

@@ -16,7 +16,7 @@ export default function HireProcessPanel({
   bg = 'muted',
   badge = 'Our Process',
   title = 'How Hiring Works',
-  subtitle = 'A straightforward path from requirement to a developer working in your codebase — typically within 48–72 hours.',
+  subtitle = 'A straightforward path from requirement to a developer working in your codebase, typically within 48–72 hours.',
   steps = [],
 }) {
   return (

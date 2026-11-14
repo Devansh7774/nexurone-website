@@ -22,6 +22,6 @@ function maskDatabaseUrl(url) {
 
     return `mysql://${user}:***(${password.length} chars)@${host}:${port}/${database}`;
   } catch {
-    return '(invalid URL — check encoding)';
+    return '(invalid URL, check encoding)';
   }
 }

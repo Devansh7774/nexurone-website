@@ -118,7 +118,7 @@ export default async function BlogInsights() {
                       className="inline-flex items-center text-[13px] font-bold text-gray-500 uppercase tracking-widest hover:text-gray-900 transition-colors group/link"
                     >
                       <span className="line-clamp-1">{post.title}</span>
-                      <span className="sr-only"> — open full article</span>
+                      <span className="sr-only">: open full article</span>
                       <svg
                         className="ml-1.5 w-3.5 h-3.5 text-gray-400 group-hover/link:text-gray-900 transition-colors"
                         fill="none"

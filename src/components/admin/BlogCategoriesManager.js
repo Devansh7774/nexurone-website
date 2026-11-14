@@ -62,7 +62,7 @@ export default function BlogCategoriesManager({ initialCategories = [] }) {
       setName('');
       setIsFeatured(false);
       setSortOrder(getNextSortOrder(nextCategories));
-      setSuccess(`"${trimmed}" is ready — assign it when editing a post.`);
+      setSuccess(`"${trimmed}" is ready. Assign it when editing a post.`);
       setHighlightId(data.category.id);
       setTimeout(() => setHighlightId(null), 3000);
       setTimeout(() => setSuccess(''), 5000);

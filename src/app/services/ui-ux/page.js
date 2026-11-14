@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Research-led design',
     description:
-      'We base design decisions on user research and data — not assumptions or personal preference.',
+      'We base design decisions on user research and data, not assumptions or personal preference.',
   },
   {
     icon: ShieldCheck,
@@ -161,7 +161,7 @@ export default function UiUxPage() {
         imageAlt="UI/UX design illustration with wireframes, prototypes, and mobile interface design"
         imagePosition="object-right"
         title="UI/UX Design Services"
-        description="Craft intuitive, conversion-focused interfaces with user research, wireframing, prototyping, and responsive design — for web and mobile."
+        description="Craft intuitive, conversion-focused interfaces with user research, wireframing, prototyping, and responsive design, for web and mobile."
         hireForm
         align="left"
       />
@@ -181,7 +181,7 @@ export default function UiUxPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply UI/UX design"
-        description="We have delivered design work across SaaS, retail, and enterprise domains — here are the areas we know best."
+        description="We have delivered design work across SaaS, retail, and enterprise domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function UiUxPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for UI/UX"
-        description="Beyond the screens — this is what working with our design team actually looks like."
+        description="Beyond the screens: this is what working with our design team actually looks like."
         items={DIFFERENTIATORS}
       />
 

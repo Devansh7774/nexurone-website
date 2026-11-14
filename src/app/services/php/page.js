@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Full-cycle ownership',
     description:
-      'One team handles discovery through deployment — you are not juggling separate vendors for each phase.',
+      'One team handles discovery through deployment. You are not juggling separate vendors for each phase.',
   },
   {
     icon: ShieldCheck,
@@ -161,7 +161,7 @@ export default function PhpPage() {
         imageAlt="PHP web development illustration with MySQL, secure coding, and custom solutions"
         imagePosition="object-right"
         title="PHP Development Company"
-        description="Build secure, scalable web applications with PHP, MySQL, and modern frameworks — tailored for startups and enterprises."
+        description="Build secure, scalable web applications with PHP, MySQL, and modern frameworks, tailored for startups and enterprises."
         hireForm
         align="left"
       />
@@ -181,7 +181,7 @@ export default function PhpPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply PHP development"
-        description="We have delivered PHP applications across business, retail, and enterprise domains — here are the areas we know best."
+        description="We have delivered PHP applications across business, retail, and enterprise domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function PhpPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for PHP"
-        description="Beyond the language — this is what working with our team actually looks like."
+        description="Beyond the language: this is what working with our team actually looks like."
         items={DIFFERENTIATORS}
       />
 

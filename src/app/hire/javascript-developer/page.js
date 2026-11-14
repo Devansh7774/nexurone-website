@@ -31,7 +31,7 @@ const PROCESS_STEPS = [
   {
     title: 'Onboard & Start Building',
     description:
-      'Your developer integrates into your workflow within 48–72 hours — joining your sprints, tools, and communication channels from day one.',
+      'Your developer integrates into your workflow within 48–72 hours, joining your sprints, tools, and communication channels from day one.',
   },
 ];
 

@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Full-cycle ownership',
     description:
-      'One team handles discovery through deployment — you are not juggling separate design, dev, and release vendors.',
+      'One team handles discovery through deployment. You are not juggling separate design, dev, and release vendors.',
   },
   {
     icon: ShieldCheck,
@@ -161,7 +161,7 @@ export default function ReactNativePage() {
         imageAlt="React Native app development illustration with cross-platform iOS and Android support"
         imagePosition="object-right"
         title="React Native App Development Company"
-        description="Build powerful cross-platform mobile apps for iOS and Android with React Native — fast performance, code reusability, and native-like UX."
+        description="Build powerful cross-platform mobile apps for iOS and Android with React Native: fast performance, code reusability, and native-like UX."
         hireForm
         align="left"
       />
@@ -181,7 +181,7 @@ export default function ReactNativePage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply React Native"
-        description="We have delivered React Native apps across consumer and enterprise domains — here are the areas we know best."
+        description="We have delivered React Native apps across consumer and enterprise domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function ReactNativePage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for React Native"
-        description="Beyond the framework — this is what working with our team actually looks like."
+        description="Beyond the framework: this is what working with our team actually looks like."
         items={DIFFERENTIATORS}
       />
 

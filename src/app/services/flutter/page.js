@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Full-cycle ownership',
     description:
-      'One team handles discovery through deployment — you are not juggling separate design, dev, and release vendors.',
+      'One team handles discovery through deployment. You are not juggling separate design, dev, and release vendors.',
   },
   {
     icon: ShieldCheck,
@@ -162,7 +162,7 @@ export default function FlutterPage() {
         // badge="Mobile Development"
         imagePosition="object-right"
         title="Flutter App Development Services"
-        description="We design and build cross-platform mobile apps for iOS and Android — one codebase, faster delivery, and a consistent experience your users expect."
+        description="We design and build cross-platform mobile apps for iOS and Android: one codebase, faster delivery, and a consistent experience your users expect."
         hireForm
         align="left"
       />
@@ -182,7 +182,7 @@ export default function FlutterPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply Flutter"
-        description="We have delivered Flutter apps across consumer and enterprise domains — here are the areas we know best."
+        description="We have delivered Flutter apps across consumer and enterprise domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -198,7 +198,7 @@ export default function FlutterPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for Flutter"
-        description="Beyond the framework — this is what working with our team actually looks like."
+        description="Beyond the framework: this is what working with our team actually looks like."
         items={DIFFERENTIATORS}
       />
 

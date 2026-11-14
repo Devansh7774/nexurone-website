@@ -95,7 +95,7 @@ export async function POST(request) {
     );
 
     await notifyNewInquiry({
-      subject: `New career application: ${role} — ${name}`,
+      subject: `New career application: ${role} | ${name}`,
       title: 'New career application',
       replyTo: email,
       rows: [

@@ -10,7 +10,7 @@ export default function HireSkillsGrid({
   bg = 'muted',
   badge = 'Capabilities',
   title = 'What Our Developers Build',
-  subtitle = 'From greenfield products to legacy modernization — depth across the JavaScript ecosystem.',
+  subtitle = 'From greenfield products to legacy modernization: depth across the JavaScript ecosystem.',
   skills = [],
 }) {
   return (

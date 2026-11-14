@@ -120,7 +120,7 @@ export async function runMigrations() {
     console.log('\nApplied migrations:');
     for (const row of appliedAfter) {
       const meta = MIGRATION_VERSIONS.find((migration) => migration.version === row);
-      console.log(`  ${row} — ${meta?.description || 'applied'}`);
+      console.log(`  ${row}: ${meta?.description || 'applied'}`);
     }
 
     console.log('\nMigration complete.');

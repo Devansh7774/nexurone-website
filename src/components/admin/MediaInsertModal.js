@@ -76,7 +76,7 @@ export function ImageInsertModal({ onClose, onInsert, variant = 'figure' }) {
         <Field label="Alt text" required hint="Describes the image for screen readers & SEO">
           <input className={inputClass} value={alt} onChange={(e) => setAlt(e.target.value)} placeholder="Team collaborating on a project" />
         </Field>
-        <Field label="Title (optional)" hint="Shown on hover — extra description">
+        <Field label="Title (optional)" hint="Shown on hover: extra description">
           <input className={inputClass} value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Optional image title" />
         </Field>
         <Field label="Caption (optional)" hint="Text displayed below the image">

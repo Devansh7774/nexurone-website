@@ -33,7 +33,7 @@ const PROCESS_STEPS = [
     icon: Code2,
     title: 'Design & build',
     description:
-      'We ship in milestones — UX, core features, integrations, and staging reviews your team can validate.',
+      'We ship in milestones: UX, core features, integrations, and staging reviews your team can validate.',
     deliverables: [
       'UX & architecture',
       'Feature milestones',
@@ -60,7 +60,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Domain-aware delivery',
     description:
-      'We shape solutions around how your industry actually operates — not a one-size template.',
+      'We shape solutions around how your industry actually operates, not a one-size template.',
   },
   {
     icon: ShieldCheck,
@@ -145,7 +145,7 @@ export default function IndustryPage({ slug }) {
         bg="muted"
         eyebrow="Why Nexuron"
         title={`Why ${industry.name} teams work with us`}
-        description="Beyond the build — this is what partnership with Nexuron looks like."
+        description="Beyond the build: this is what partnership with Nexuron looks like."
         items={DIFFERENTIATORS}
       />
 

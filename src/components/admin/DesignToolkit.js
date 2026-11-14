@@ -166,7 +166,7 @@ const BLOCKS = {
       icon: Type,
       html: `<blockquote style="border:none;background:#f8fafc;padding:24px 28px;border-radius:12px;margin:1.5rem 0;border-left:4px solid #2f6bff;">
   <p style="font-size:1.15rem;font-style:italic;color:#334155;margin:0;line-height:1.7;">"Your inspiring quote goes here."</p>
-  <footer style="margin-top:12px;font-size:0.875rem;color:#64748b;font-weight:600;">— Author name</footer>
+  <footer style="margin-top:12px;font-size:0.875rem;color:#64748b;font-weight:600;">Author name</footer>
 </blockquote>`,
     },
     {

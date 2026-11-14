@@ -71,7 +71,7 @@ export default function HireEngagementCards({
   bg = 'white',
   badge = 'Engagement Models',
   title = 'How You Can Engage Our Developers',
-  subtitle = 'Three flexible ways to bring talent into your team — choose the structure that matches your timeline and how you like to work.',
+  subtitle = 'Three flexible ways to bring talent into your team. Choose the structure that matches your timeline and how you like to work.',
   models = [],
   ctaHref = '#hire-inquiry',
   ctaLabel = 'Discuss your hiring needs',

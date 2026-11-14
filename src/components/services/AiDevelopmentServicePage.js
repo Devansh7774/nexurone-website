@@ -85,13 +85,13 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Practical delivery',
     description:
-      'Focused on real business needs — chat, CRM, calls, and automations your team can operate.',
+      'Focused on real business needs: chat, CRM, calls, and automations your team can operate.',
   },
   {
     icon: ShieldCheck,
     title: 'Appropriate safeguards',
     description:
-      'Permissions, escalation paths, and evaluation designed for the workflow — reducing risk without overclaiming certainty.',
+      'Permissions, escalation paths, and evaluation designed for the workflow, reducing risk without overclaiming certainty.',
   },
   {
     icon: Handshake,

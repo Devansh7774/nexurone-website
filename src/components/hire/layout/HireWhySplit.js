@@ -11,7 +11,7 @@ import { HIRE_WHY_SECTION_IMAGE } from '@/lib/serviceHeroImages';
 const DEFAULT_BENEFITS = [
   'Experienced JavaScript developers with production track records',
   'Modern ES6+, TypeScript, and framework expertise',
-  'Full-stack capability — frontend, backend, and APIs',
+  'Full-stack capability: frontend, backend, and APIs',
   'Performance-focused, accessible, and scalable code',
   'Flexible engagement models to match your budget',
   'Timezone overlap and transparent agile communication',
@@ -21,7 +21,7 @@ export default function HireWhySplit({
   bg = 'white',
   badge = 'Why Nexuron',
   title = 'Why Hire JavaScript Developers From Us?',
-  description = 'We connect you with engineers who integrate into your team — not contractors who disappear after delivery. Every developer is vetted for technical depth, communication, and the discipline to write code that lasts.',
+  description = 'We connect you with engineers who integrate into your team, not contractors who disappear after delivery. Every developer is vetted for technical depth, communication, and the discipline to write code that lasts.',
   benefits = DEFAULT_BENEFITS,
   imageSrc = HIRE_WHY_SECTION_IMAGE,
   imageAlt = 'Nexuron development team',

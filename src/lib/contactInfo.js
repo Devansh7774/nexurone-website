@@ -12,7 +12,7 @@ export const CONTACT_LOCATIONS = [
   },
   {
     title: 'India',
-    address: 'FF-70,71 Hanumant Plaza, Nr. Vadvala Hanumandada Temple, Kadi, GJ, India - 384440',
+    address: 'FF-70,71 Hanumant Plaza, Nr. Vadvala Hanumandada Temple, Kadi, GJ, India, 384440',
   },
 ];
 

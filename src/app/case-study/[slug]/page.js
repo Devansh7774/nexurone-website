@@ -72,7 +72,7 @@ function CheckList({ items }) {
           <span className="text-[#111827] font-bold text-[18px] mt-0.5">✓</span>
           <p className="text-gray-500 text-[16px] leading-[1.8]">
             <span className="font-bold text-[#111827]">{item.title}</span>
-            {' – '}
+            {' · '}
             {item.desc}
           </p>
         </div>

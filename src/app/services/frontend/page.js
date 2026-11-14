@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Full-cycle ownership',
     description:
-      'One team handles design through deployment — you are not juggling separate vendors for each phase.',
+      'One team handles design through deployment. You are not juggling separate vendors for each phase.',
   },
   {
     icon: ShieldCheck,
@@ -161,7 +161,7 @@ export default function FrontendPage() {
         imageAlt="Frontend development illustration with React, TypeScript, responsive design, and clean code"
         imagePosition="object-right"
         title="Frontend Development Company"
-        description="Build fast, responsive, pixel-perfect interfaces with React, Angular, Vue.js, and TypeScript — tailored for startups and enterprises."
+        description="Build fast, responsive, pixel-perfect interfaces with React, Angular, Vue.js, and TypeScript, tailored for startups and enterprises."
         hireForm
         align="left"
       />
@@ -181,7 +181,7 @@ export default function FrontendPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply frontend development"
-        description="We have delivered frontend solutions across SaaS, retail, and enterprise domains — here are the areas we know best."
+        description="We have delivered frontend solutions across SaaS, retail, and enterprise domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function FrontendPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for frontend"
-        description="Beyond the frameworks — this is what working with our team actually looks like."
+        description="Beyond the frameworks: this is what working with our team actually looks like."
         items={DIFFERENTIATORS}
       />
 

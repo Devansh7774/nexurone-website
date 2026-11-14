@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Full-cycle ownership',
     description:
-      'One team handles discovery through deployment — you are not juggling separate design, dev, and release vendors.',
+      'One team handles discovery through deployment. You are not juggling separate design, dev, and release vendors.',
   },
   {
     icon: ShieldCheck,
@@ -161,7 +161,7 @@ export default function AndroidPage() {
         imageAlt="Android app development illustration with Kotlin, UI/UX, and Google Play deployment"
         imagePosition="object-right"
         title="Android App Development Company"
-        description="Build powerful, scalable Android applications with Kotlin, Java, and modern Android frameworks — tailored for startups and enterprises."
+        description="Build powerful, scalable Android applications with Kotlin, Java, and modern Android frameworks, tailored for startups and enterprises."
         hireForm
         align="left"
       />
@@ -181,7 +181,7 @@ export default function AndroidPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply Android development"
-        description="We have delivered Android apps across consumer and enterprise domains — here are the areas we know best."
+        description="We have delivered Android apps across consumer and enterprise domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function AndroidPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for Android"
-        description="Beyond the platform — this is what working with our team actually looks like."
+        description="Beyond the platform: this is what working with our team actually looks like."
         items={DIFFERENTIATORS}
       />
 

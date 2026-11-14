@@ -103,7 +103,7 @@ export default function Footer() {
                 <p className="text-white text-[14px] font-medium leading-relaxed">
                   FF-70,71 Hanumant Plaza, Nr. Vadvala<br />
                   Hanumandada Temple, Kadi, GJ,<br />
-                  India - 384440
+                  India, 384440
                 </p>
               </div>
 

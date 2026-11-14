@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Full-stack IoT ownership',
     description:
-      'One team handles devices, apps, and cloud — you are not juggling separate hardware and software vendors.',
+      'One team handles devices, apps, and cloud. You are not juggling separate hardware and software vendors.',
   },
   {
     icon: ShieldCheck,
@@ -161,7 +161,7 @@ export default function IotDevelopmentPage() {
         imageAlt="IoT development illustration with connected smart devices and cloud integration"
         imagePosition="object-right"
         title="IoT Development Company"
-        description="Build secure, scalable IoT solutions connecting smart devices, sensors, and cloud platforms — for smart homes, industry, and enterprises."
+        description="Build secure, scalable IoT solutions connecting smart devices, sensors, and cloud platforms, for smart homes, industry, and enterprises."
         hireForm
         align="left"
       />
@@ -181,7 +181,7 @@ export default function IotDevelopmentPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply IoT development"
-        description="We have delivered IoT solutions across consumer, industrial, and enterprise domains — here are the areas we know best."
+        description="We have delivered IoT solutions across consumer, industrial, and enterprise domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function IotDevelopmentPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for IoT"
-        description="Beyond the devices — this is what working with our team actually looks like."
+        description="Beyond the devices: this is what working with our team actually looks like."
         items={DIFFERENTIATORS}
       />
 

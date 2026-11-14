@@ -1,0 +1,36 @@
+---
+description: Do not use em dashes, en dashes, or double hyphens as punctuation in user-facing site copy
+alwaysApply: true
+---
+
+# No dashes in site copy
+
+Never use `—` (em dash), `–` (en dash), or `--` as punctuation or separators in user-facing text (UI strings, SEO metadata, heroes, FAQs, emails, admin labels).
+
+## Use instead
+
+- Comma, colon, period, or `|` depending on meaning
+- Address / title separators: `,` or `|` (e.g. `India, 384440`, `Career | Nexuron Technologies`)
+- Labeled lists: `Label: description` (not `Label — description`)
+- Screen-reader hints: `: open full article` (not `— open`)
+
+## Allowed
+
+- Compound words / CSS / paths / flags: `full-stack`, `max-w-[1340px]`, `--fix`
+- Numeric ranges with an en dash when idiomatic: `48–72 hours`, `2–4 months`
+- Empty-state placeholders: a single `—` meaning “no value” in tables
+- Code comments (not shown to visitors)
+
+## Examples
+
+```text
+❌ trained on your business — available 24/7
+✅ trained on your business. Available 24/7
+✅ trained on your business: available 24/7
+
+❌ Beyond the framework — this is what working with us looks like.
+✅ Beyond the framework: this is what working with us looks like.
+
+❌ India - 384440
+✅ India, 384440
+```

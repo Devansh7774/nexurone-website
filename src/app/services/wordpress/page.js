@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Full-cycle ownership',
     description:
-      'One team handles design through deployment — you are not juggling separate vendors for each phase.',
+      'One team handles design through deployment. You are not juggling separate vendors for each phase.',
   },
   {
     icon: ShieldCheck,
@@ -161,7 +161,7 @@ export default function WordPressPage() {
         imageAlt="WordPress development illustration with themes, plugins, SEO, and customization"
         imagePosition="object-right"
         title="WordPress Development Company"
-        description="Build scalable, SEO-friendly WordPress websites with custom themes, plugins, and enterprise solutions — tailored for startups and enterprises."
+        description="Build scalable, SEO-friendly WordPress websites with custom themes, plugins, and enterprise solutions, tailored for startups and enterprises."
         hireForm
         align="left"
       />
@@ -181,7 +181,7 @@ export default function WordPressPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply WordPress"
-        description="We have delivered WordPress sites across content, retail, and enterprise domains — here are the areas we know best."
+        description="We have delivered WordPress sites across content, retail, and enterprise domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function WordPressPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for WordPress"
-        description="Beyond the CMS — this is what working with our team actually looks like."
+        description="Beyond the CMS: this is what working with our team actually looks like."
         items={DIFFERENTIATORS}
       />
 

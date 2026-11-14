@@ -570,7 +570,7 @@ export default function BlogEditor({
             <div>
               <label htmlFor="post-excerpt" className="block text-sm font-semibold text-slate-700 mb-2">
                 Excerpt
-                <span className="font-normal text-slate-500 ml-1">— shown on the blog listing page</span>
+                <span className="font-normal text-slate-500 ml-1">(shown on the blog listing page)</span>
               </label>
               <textarea
                 id="post-excerpt"

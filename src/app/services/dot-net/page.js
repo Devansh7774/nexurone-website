@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Full-cycle ownership',
     description:
-      'One team handles discovery through deployment — you are not juggling separate vendors for each phase.',
+      'One team handles discovery through deployment. You are not juggling separate vendors for each phase.',
   },
   {
     icon: ShieldCheck,
@@ -161,7 +161,7 @@ export default function DotNetPage() {
         imageAlt=".NET development illustration with ASP.NET Core, C#, and enterprise solutions"
         imagePosition="object-right"
         title=".NET Development Company"
-        description="Build secure, scalable enterprise applications with ASP.NET Core, C#, Entity Framework, and Azure — tailored for startups and enterprises."
+        description="Build secure, scalable enterprise applications with ASP.NET Core, C#, Entity Framework, and Azure, tailored for startups and enterprises."
         hireForm
         align="left"
       />
@@ -181,7 +181,7 @@ export default function DotNetPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply .NET development"
-        description="We have delivered .NET applications across enterprise, cloud, and business domains — here are the areas we know best."
+        description="We have delivered .NET applications across enterprise, cloud, and business domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function DotNetPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for .NET"
-        description="Beyond the framework — this is what working with our team actually looks like."
+        description="Beyond the framework: this is what working with our team actually looks like."
         items={DIFFERENTIATORS}
       />
 

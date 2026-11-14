@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Full-cycle ownership',
     description:
-      'One team handles discovery through deployment — you are not juggling separate frontend and backend vendors.',
+      'One team handles discovery through deployment. You are not juggling separate frontend and backend vendors.',
   },
   {
     icon: ShieldCheck,
@@ -161,7 +161,7 @@ export default function MeanMernPage() {
         imageAlt="MEAN and MERN stack development illustration"
         imagePosition="object-right"
         title="MEAN & MERN App Development Company"
-        description="Build fast, scalable web and mobile applications with MongoDB, Express, React or Angular, and Node.js — tailored for startups and enterprises."
+        description="Build fast, scalable web and mobile applications with MongoDB, Express, React or Angular, and Node.js, tailored for startups and enterprises."
         hireForm
         align="left"
       />
@@ -181,7 +181,7 @@ export default function MeanMernPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply MEAN & MERN"
-        description="We have delivered full-stack JavaScript applications across SaaS, retail, and enterprise domains — here are the areas we know best."
+        description="We have delivered full-stack JavaScript applications across SaaS, retail, and enterprise domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function MeanMernPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for MEAN & MERN"
-        description="Beyond the stack — this is what working with our team actually looks like."
+        description="Beyond the stack: this is what working with our team actually looks like."
         items={DIFFERENTIATORS}
       />
 

@@ -27,7 +27,7 @@ const faqs = [
     question: "Can you develop a responsive website?",
     answer: (
       <div className="text-gray-500 text-[14.5px] leading-relaxed">
-        <p>Absolutely. We follow a mobile-first approach and employ responsive web design principles to ensure that your website or web application looks and functions flawlessly across all devices, screen sizes, and resolutions—from desktop monitors to tablets and smartphones.</p>
+        <p>Absolutely. We follow a mobile-first approach and employ responsive web design principles to ensure that your website or web application looks and functions flawlessly across all devices, screen sizes, and resolutions, from desktop monitors to tablets and smartphones.</p>
       </div>
     )
   },

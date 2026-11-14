@@ -4,7 +4,7 @@ export function buildEngagementModels(roleShort, roleLong = roleShort) {
       icon: 'UserCheck',
       label: 'Dedicated team',
       title: `Dedicated ${roleLong}`,
-      description: `One developer joins your team full time — your standups, repo, and tools, like an in-house hire without the recruiting cycle.`,
+      description: `One developer joins your team full time: your standups, repo, and tools, like an in-house hire without the recruiting cycle.`,
       points: [
         'Exclusive focus on your product',
         'Aligned to your timezone & stack',
@@ -16,7 +16,7 @@ export function buildEngagementModels(roleShort, roleLong = roleShort) {
       icon: 'Clock',
       label: 'Flexible capacity',
       title: 'Hourly / Part-time',
-      description: `Senior ${roleShort} support when you need it — extra hands for sprints, reviews, audits, or coverage between full-time hires.`,
+      description: `Senior ${roleShort} support when you need it: extra hands for sprints, reviews, audits, or coverage between full-time hires.`,
       points: [
         'Hours that flex with your workload',
         'No long-term commitment required',
@@ -28,7 +28,7 @@ export function buildEngagementModels(roleShort, roleLong = roleShort) {
       icon: 'FileCheck',
       label: 'Scoped delivery',
       title: 'Project-based',
-      description: `A defined ${roleShort} engagement with agreed milestones, deliverables, and timeline — we staff and manage delivery end to end.`,
+      description: `A defined ${roleShort} engagement with agreed milestones, deliverables, and timeline. We staff and manage delivery end to end.`,
       points: [
         'Clear scope and milestone plan',
         'Single point of contact',
@@ -52,7 +52,7 @@ export function buildProcessSteps(roleName) {
     {
       title: 'Onboard & Start Building',
       description:
-        'Your developer integrates into your workflow within 48–72 hours — joining your sprints, tools, and communication channels from day one.',
+        'Your developer integrates into your workflow within 48–72 hours, joining your sprints, tools, and communication channels from day one.',
     },
   ];
 }

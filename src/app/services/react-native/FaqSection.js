@@ -14,11 +14,11 @@ const faqs = [
         </p>
         <ul className="space-y-4">
           {[
-            <span key="1"><strong className="text-gray-900">Cost Reduction</strong> – One can consult an expert to migrate the whole database of an app to React Native for better efficiency and reduced cost.</span>,
-            <span key="2"><strong className="text-gray-900">Native Look and Better UI/UX</strong> – Comprising its own JavaScript it can conveniently provide a Native interface feel. The library that it utilizes is known as React JavaScript which allows the UI to be more focused for users.</span>,
-            <span key="3"><strong className="text-gray-900">Code Reusability</strong> – One does not need to create separate and distinctive code for each platform specifically and almost entire code can be used for various platforms.</span>,
-            <span key="4"><strong className="text-gray-900">Third-Party Plugins</strong> – Allowing numerous third-party plugin features that eliminate the dependency on specific web-view functionality.</span>,
-            <span key="5"><strong className="text-gray-900">Community Support</strong> – The community that is using and has advanced knowledge of React Native is quite big. More than 80,000 developers utilize React Native as they know the benefit provided by the framework. Hence making community support a plus point.</span>
+            <span key="1"><strong className="text-gray-900">Cost Reduction</strong>: One can consult an expert to migrate the whole database of an app to React Native for better efficiency and reduced cost.</span>,
+            <span key="2"><strong className="text-gray-900">Native Look and Better UI/UX</strong>: Comprising its own JavaScript it can conveniently provide a Native interface feel. The library that it utilizes is known as React JavaScript which allows the UI to be more focused for users.</span>,
+            <span key="3"><strong className="text-gray-900">Code Reusability</strong>: One does not need to create separate and distinctive code for each platform specifically and almost entire code can be used for various platforms.</span>,
+            <span key="4"><strong className="text-gray-900">Third-Party Plugins</strong>: Allowing numerous third-party plugin features that eliminate the dependency on specific web-view functionality.</span>,
+            <span key="5"><strong className="text-gray-900">Community Support</strong>: The community that is using and has advanced knowledge of React Native is quite big. More than 80,000 developers utilize React Native as they know the benefit provided by the framework. Hence making community support a plus point.</span>
           ].map((item, idx) => (
             <li key={idx} className="flex items-start gap-3 text-gray-700 text-[14.5px]">
               <Check className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" strokeWidth={3} />

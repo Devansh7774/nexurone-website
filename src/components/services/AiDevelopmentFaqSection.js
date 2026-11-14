@@ -9,7 +9,7 @@ export default function AiDevelopmentFaqSection({ serviceName, faqs }) {
 
   return (
     <ServiceFaqShell
-      description={`Common questions about our ${serviceName} services — from scope and timeline to integrations and safety.`}
+      description={`Common questions about our ${serviceName} services, from scope and timeline to integrations and safety.`}
     >
       {faqs.map((faq, index) => {
         const isOpen = openIndex === index;

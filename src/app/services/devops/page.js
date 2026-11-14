@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'End-to-end DevOps ownership',
     description:
-      'One team handles assessment through production — you are not juggling separate infra and release vendors.',
+      'One team handles assessment through production. You are not juggling separate infra and release vendors.',
   },
   {
     icon: ShieldCheck,
@@ -161,7 +161,7 @@ export default function DevOpsPage() {
         imageAlt="DevOps services illustration with CI/CD, cloud infrastructure, and automation"
         imagePosition="object-right"
         title="DevOps Services"
-        description="Accelerate software delivery with CI/CD pipelines, infrastructure as code, cloud automation, and 24/7 monitoring — tailored for startups and enterprises."
+        description="Accelerate software delivery with CI/CD pipelines, infrastructure as code, cloud automation, and 24/7 monitoring, tailored for startups and enterprises."
         hireForm
         align="left"
       />
@@ -181,7 +181,7 @@ export default function DevOpsPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply DevOps"
-        description="We have delivered DevOps solutions across SaaS, enterprise, and cloud migration projects — here are the areas we know best."
+        description="We have delivered DevOps solutions across SaaS, enterprise, and cloud migration projects. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function DevOpsPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for DevOps"
-        description="Beyond the tooling — this is what working with our team actually looks like."
+        description="Beyond the tooling: this is what working with our team actually looks like."
         items={DIFFERENTIATORS}
       />
 

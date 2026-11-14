@@ -185,7 +185,7 @@ export const AI_DEVELOPMENT_SERVICES = [
     overviewTitle: 'Integrate LLMs into applications you already run',
     overviewHighlight: 'applications you already run',
     overviewDescription:
-      'We integrate large language models into web and mobile applications using server-side APIs, carefully designed prompts, evaluation, and cost controls—without requiring a full rewrite of your existing system.',
+      'We integrate large language models into web and mobile applications using server-side APIs, carefully designed prompts, evaluation, and cost controls, without requiring a full rewrite of your existing system.',
     serviceName: 'LLM Integration',
     hireSubject: 'LLM Integration Engineer',
     overviewItems: [
@@ -440,7 +440,7 @@ export const AI_DEVELOPMENT_SERVICES = [
     overviewTitle: 'Generative tools with templates and review built in',
     overviewHighlight: 'templates and review built in',
     overviewDescription:
-      'We build generative AI applications for marketing, operations, and product teams—from content tools to document generators—with structured inputs, reusable templates, and review steps suited to the use case.',
+      'We build generative AI applications for marketing, operations, and product teams, from content tools to document generators, with structured inputs, reusable templates, and review steps suited to the use case.',
     serviceName: 'Generative AI App Development',
     hireSubject: 'Generative AI Developer',
     overviewItems: [
@@ -680,7 +680,7 @@ export const AI_DEVELOPMENT_SERVICES = [
       {
         question: 'How do you select tools?',
         answer:
-          'Recommendations should be based on the business problem, data, budget, security requirements, integration needs, and team capabilities—not novelty alone.',
+          'Recommendations should be based on the business problem, data, budget, security requirements, integration needs, and team capabilities, not novelty alone.',
       },
     ],
   },

@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'End-to-end 3D production',
     description:
-      'One team handles modeling through final delivery — you are not coordinating separate specialists.',
+      'One team handles modeling through final delivery. You are not coordinating separate specialists.',
   },
   {
     icon: ShieldCheck,
@@ -161,7 +161,7 @@ export default function ThreeDDesignPage() {
         imageAlt="3D design illustration with modeling software, 3D printing, and product visualization"
         imagePosition="object-right"
         title="3D Design Services"
-        description="Bring ideas to life with 3D modeling, rendering, animation, and AR/VR-ready visuals — for products, architecture, and immersive experiences."
+        description="Bring ideas to life with 3D modeling, rendering, animation, and AR/VR-ready visuals, for products, architecture, and immersive experiences."
         hireForm
         align="left"
       />
@@ -181,7 +181,7 @@ export default function ThreeDDesignPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply 3D design"
-        description="We have delivered 3D work across product, architecture, and immersive media domains — here are the areas we know best."
+        description="We have delivered 3D work across product, architecture, and immersive media domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function ThreeDDesignPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for 3D design"
-        description="Beyond the renders — this is what working with our team actually looks like."
+        description="Beyond the renders: this is what working with our team actually looks like."
         items={DIFFERENTIATORS}
       />
 

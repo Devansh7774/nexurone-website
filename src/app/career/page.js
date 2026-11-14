@@ -3,7 +3,7 @@ import JobOpenings from "@/components/career/JobOpenings";
 import CareerForm from "@/components/career/CareerForm";
 
 export const metadata = {
-  title: "Career - Nexuron Technologies",
+  title: "Career | Nexuron Technologies",
   description: "Join Nexuron Technologies and build a future that inspires growth.",
 };
 

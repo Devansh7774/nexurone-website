@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Full-cycle ownership',
     description:
-      'One team handles discovery through deployment — you are not juggling separate design, dev, and release vendors.',
+      'One team handles discovery through deployment. You are not juggling separate design, dev, and release vendors.',
   },
   {
     icon: ShieldCheck,
@@ -181,7 +181,7 @@ export default function IOSPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply iOS development"
-        description="We have delivered iOS apps across consumer and enterprise domains — here are the areas we know best."
+        description="We have delivered iOS apps across consumer and enterprise domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function IOSPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for iOS"
-        description="Beyond the platform — this is what working with our team actually looks like."
+        description="Beyond the platform: this is what working with our team actually looks like."
         items={DIFFERENTIATORS}
       />
 

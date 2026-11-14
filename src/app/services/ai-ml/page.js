@@ -135,7 +135,7 @@ const DIFFERENTIATORS = [
     icon: Layers3,
     title: 'Practical, not hype-driven',
     description:
-      'We focus on AI that solves real business problems — not experiments that never reach production.',
+      'We focus on AI that solves real business problems, not experiments that never reach production.',
   },
   {
     icon: ShieldCheck,
@@ -161,7 +161,7 @@ export default function AiMlPage() {
         imageAlt="AI and machine learning illustration with neural networks, data analytics, and automation"
         imagePosition="object-right"
         title="AI & ML Development Services"
-        description="Harness AI and machine learning for predictive analytics, NLP, computer vision, and intelligent automation — tailored for startups and enterprises."
+        description="Harness AI and machine learning for predictive analytics, NLP, computer vision, and intelligent automation, tailored for startups and enterprises."
         hireForm
         align="left"
       />
@@ -181,7 +181,7 @@ export default function AiMlPage() {
         bg="muted"
         eyebrow="Industries"
         title="Where we apply AI & ML"
-        description="We have delivered AI solutions across manufacturing, retail, and enterprise domains — here are the areas we know best."
+        description="We have delivered AI solutions across manufacturing, retail, and enterprise domains. Here are the areas we know best."
         solutions={INDUSTRIES}
       />
 
@@ -197,7 +197,7 @@ export default function AiMlPage() {
         bg="muted"
         eyebrow="Why Nexuron"
         title="Why clients choose us for AI & ML"
-        description="Beyond the algorithms — this is what working with our team actually looks like."
+        description="Beyond the algorithms: this is what working with our team actually looks like."
         items={DIFFERENTIATORS}
       />
 
