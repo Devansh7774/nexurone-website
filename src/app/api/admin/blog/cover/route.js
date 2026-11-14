@@ -43,18 +43,12 @@ export async function POST(request) {
     return NextResponse.json({ cover_image_url: coverImageUrl });
   } catch (err) {
     console.error('[POST /api/admin/blog/cover]', err);
-    const code = err?.name || err?.Code || err?.code || '';
-    const httpStatus = err?.$metadata?.httpStatusCode;
     const message =
       typeof err?.message === 'string' && err.message.startsWith('Missing required env var')
-        ? 'R2 is not configured. Add R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET_NAME, and R2_PUBLIC_URL on the server.'
-        : code === 'Unauthorized' || httpStatus === 401
-          ? 'R2 rejected the API credentials (401 Unauthorized). Create a new R2 API token with Object Read & Write and update R2_ACCESS_KEY_ID / R2_SECRET_ACCESS_KEY on live.'
-          : code === 'AccessDenied' || httpStatus === 403
-            ? 'R2 denied the upload. The API token needs Object Read & Write on this bucket.'
-            : typeof err?.message === 'string' && err.message.trim()
-              ? `Upload failed: ${err.message}`
-              : 'Upload failed.';
+        ? 'R2 is not configured. Add R2 env vars to .env.local.'
+        : err?.name === 'AccessDenied' || err?.Code === 'AccessDenied'
+          ? 'R2 denied the upload. The API token needs Object Read & Write on this bucket.'
+          : 'Upload failed.';
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
