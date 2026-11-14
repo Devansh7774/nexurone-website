@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function BlogPostNotFound() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="insights-scope min-h-screen bg-white font-sans">
       <section className="bg-gray-50 border-b border-gray-100 py-12 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900">Insight Not Found</h1>

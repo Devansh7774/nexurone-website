@@ -62,7 +62,7 @@ export default async function BlogPage({ searchParams }) {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="insights-scope min-h-screen bg-white font-sans">
 
       {/* ── Page Header ── */}
       <section className="bg-white pt-24 pb-10 px-4 sm:px-6 border-b border-gray-100">

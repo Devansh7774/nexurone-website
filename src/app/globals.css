@@ -417,12 +417,35 @@
     text-align: left;
   }
 
+  /* Insights chrome + post body: always match site Geist typography */
+  .insights-scope {
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+  }
+
   /* Published blog post + admin preview — headings, blocks, tables */
   .blog-content {
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
     font-size: 1.125rem;
     line-height: 1.8;
     color: #4b5563;
     word-wrap: break-word;
+  }
+
+  /*
+   * Migrated Elementor / design-block HTML often includes inline font-family.
+   * Force site sans everywhere in post content except code samples.
+   */
+  .blog-content :where(
+    h1, h2, h3, h4, h5, h6,
+    p, li, a, span, div, section, article, header, footer, aside,
+    blockquote, td, th, tr, table, figcaption, figure, button, label,
+    strong, em, b, i, u, small, mark, del, ins, sub, sup
+  ) {
+    font-family: var(--font-geist-sans), system-ui, sans-serif !important;
+  }
+
+  .blog-content :where(code, pre, kbd, samp) {
+    font-family: var(--font-geist-mono), ui-monospace, monospace !important;
   }
 
   .blog-content h1 {
@@ -622,7 +645,7 @@
   }
 
   .blog-content code {
-    font-family: ui-monospace, monospace;
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
     font-size: 0.9em;
   }
 
@@ -645,7 +668,7 @@
   }
 
   .blog-content code:not(pre code) {
-    font-family: ui-monospace, monospace;
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
     font-size: 0.875em;
     background: #f1f5f9;
     color: #0f172a;

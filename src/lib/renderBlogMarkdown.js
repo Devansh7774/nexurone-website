@@ -37,7 +37,7 @@ const ALLOWED_STYLES = {
     'font-size': [/.*/],
     'font-weight': [/.*/],
     'font-style': [/.*/],
-    'font-family': [/.*/],
+    // font-family intentionally omitted: Insights must stay on site Geist typography
     'text-align': [/.*/],
     'border-radius': [/.*/],
     width: [/.*/],
