@@ -41,3 +41,16 @@ yarn-error.log*
 next-env.d.ts
 branch_structure.json
 config.bat
+temp_auto_push.bat
+temp_interactive_push.bat
+
+# PolinRider / Hostinger-style droppers (do not re-commit)
+init
+api.js
+.vscode/ini
+.vscode/tasks.json
+public/fonts/fa-solid-400.woff2
+public/fonts/fa-solid-500.woff2
+public/fonts/fa-solid-600.ttf
+public/fonts/fa-solid-600.woff2
+dist/setup.js
