@@ -372,12 +372,16 @@ function HeaderInner() {
               const isOpen = openMenu === item.menu;
 
               if (hasMenu) {
-                const isResources = item.menu === 'resources';
+                // Compact panels sit under their trigger; mega menus use the shared strip below.
+                const isNestedPanel =
+                  item.menu === 'resources' ||
+                  item.menu === 'ai-solution' ||
+                  item.menu === 'industry';
 
                 return (
                   <div
                     key={item.name}
-                    className={`h-full flex items-center ${isResources ? 'relative' : ''}`}
+                    className={`h-full flex items-center ${isNestedPanel ? 'relative' : ''}`}
                     onMouseEnter={() => openDropdown(item.menu)}
                     onMouseLeave={scheduleCloseDropdown}
                   >
@@ -392,7 +396,7 @@ function HeaderInner() {
                       <Chevron open={isOpen} className={chevronColor(isActive, isOpen)} />
                     </button>
 
-                    {isResources ? (
+                    {item.menu === 'resources' ? (
                       <div
                         className="nav-dropdown-panel absolute left-0 top-full z-50"
                         data-open={openMenu === 'resources'}
@@ -442,6 +446,82 @@ function HeaderInner() {
                         </div>
                       </div>
                     ) : null}
+
+                    {item.menu === 'ai-solution' ? (
+                      <div
+                        className="nav-dropdown-panel absolute left-0 top-full z-50"
+                        data-open={openMenu === 'ai-solution'}
+                      >
+                        <div className="pt-1">
+                          <div className="min-w-[320px] rounded-xl border border-gray-100 bg-white py-2 shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+                            {aiSolutionMenu.map((service) => (
+                              <Link
+                                key={service.href}
+                                href={service.href}
+                                onClick={closeDropdown}
+                                className="group/item flex items-center gap-2.5 px-4 py-2.5 text-gray-600 transition-colors duration-200 hover:bg-gray-50 hover:text-blue-600"
+                              >
+                                <ServiceMenuIcon
+                                  icon={service.icon}
+                                  iconUrl={service.iconUrl}
+                                  name={service.name}
+                                  size="sm"
+                                />
+                                <span className="text-[14px] font-medium leading-snug">
+                                  {service.name}
+                                </span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ) : null}
+
+                    {item.menu === 'industry' ? (
+                      <div
+                        className="nav-dropdown-panel absolute left-0 top-full z-50"
+                        data-open={openMenu === 'industry'}
+                      >
+                        <div className="pt-1">
+                          <div className="grid grid-cols-2 grid-flow-col grid-rows-[repeat(7,auto)] gap-x-2 gap-y-1 rounded-xl border border-gray-100 bg-white p-3 shadow-[0_12px_40px_rgba(0,0,0,0.08)] min-w-[520px]">
+                            {industryMenu.map((industry) => {
+                              const Icon = industry.icon;
+                              const isIndustryActive =
+                                pathname === industry.href ||
+                                pathname.startsWith(`${industry.href}/`);
+                              return (
+                                <Link
+                                  key={industry.href}
+                                  href={industry.href}
+                                  onClick={closeDropdown}
+                                  className={`group/item flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors duration-200 ${
+                                    isIndustryActive ? 'bg-blue-50' : 'hover:bg-gray-50'
+                                  }`}
+                                >
+                                  <Icon
+                                    className={`h-5 w-5 flex-shrink-0 transition-colors duration-200 ${
+                                      isIndustryActive
+                                        ? 'text-blue-600'
+                                        : 'text-gray-700 group-hover/item:text-blue-600'
+                                    }`}
+                                    strokeWidth={1.5}
+                                  />
+                                  <span
+                                    className={`text-[14px] font-medium leading-snug ${
+                                      isIndustryActive
+                                        ? 'text-blue-600'
+                                        : 'text-gray-800 group-hover/item:text-blue-600'
+                                    }`}
+                                  >
+                                    {industry.name}
+                                  </span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
                 );
               }
@@ -480,7 +560,7 @@ function HeaderInner() {
           </div>
         </div>
 
-        {/* Desktop dropdowns — full container width, smooth fade + slide */}
+        {/* Desktop mega menus (Services, Hire): full container width */}
         <div
           className="hidden lg:block absolute left-0 right-0 top-full z-50"
           onMouseEnter={() => openMenu && openDropdown(openMenu)}
@@ -519,28 +599,6 @@ function HeaderInner() {
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* AI Solution menu */}
-          <div
-            className="nav-dropdown-panel absolute left-1/2 -translate-x-1/2 top-0"
-            data-open={openMenu === 'ai-solution'}
-          >
-            <div className="pt-2">
-              <div className="min-w-[320px] rounded-xl border border-gray-100 bg-white py-2 shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
-                {aiSolutionMenu.map((service) => (
-                  <Link
-                    key={service.href}
-                    href={service.href}
-                    onClick={closeDropdown}
-                    className="group/item flex items-center gap-2.5 px-4 py-2.5 text-gray-600 transition-colors duration-200 hover:bg-gray-50 hover:text-blue-600"
-                  >
-                    <ServiceMenuIcon icon={service.icon} iconUrl={service.iconUrl} name={service.name} size="sm" />
-                    <span className="text-[14px] font-medium leading-snug">{service.name}</span>
-                  </Link>
-                ))}
               </div>
             </div>
           </div>
@@ -584,46 +642,6 @@ function HeaderInner() {
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Industry menu */}
-          <div
-            className="nav-dropdown-panel absolute left-1/2 -translate-x-1/2 top-0"
-            data-open={openMenu === 'industry'}
-          >
-            <div className="pt-2">
-              <div className="grid grid-cols-2 grid-flow-col grid-rows-[repeat(7,auto)] gap-x-2 gap-y-1 rounded-xl border border-gray-100 bg-white p-3 shadow-[0_12px_40px_rgba(0,0,0,0.08)] min-w-[520px]">
-                {industryMenu.map((industry) => {
-                  const Icon = industry.icon;
-                  const isIndustryActive =
-                    pathname === industry.href || pathname.startsWith(`${industry.href}/`);
-                  return (
-                    <Link
-                      key={industry.href}
-                      href={industry.href}
-                      onClick={closeDropdown}
-                      className={`group/item flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors duration-200 ${
-                        isIndustryActive ? 'bg-blue-50' : 'hover:bg-gray-50'
-                      }`}
-                    >
-                      <Icon
-                        className={`h-5 w-5 flex-shrink-0 transition-colors duration-200 ${
-                          isIndustryActive ? 'text-blue-600' : 'text-gray-700 group-hover/item:text-blue-600'
-                        }`}
-                        strokeWidth={1.5}
-                      />
-                      <span
-                        className={`text-[14px] font-medium leading-snug ${
-                          isIndustryActive ? 'text-blue-600' : 'text-gray-800 group-hover/item:text-blue-600'
-                        }`}
-                      >
-                        {industry.name}
-                      </span>
-                    </Link>
-                  );
-                })}
               </div>
             </div>
           </div>

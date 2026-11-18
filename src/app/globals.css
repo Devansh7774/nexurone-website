@@ -753,24 +753,25 @@
     background: #dc2626;
   }
 
+  /* Use `translate` (not `transform`) so Tailwind utilities like -translate-x-1/2 stay intact */
   .nav-dropdown-panel {
     transition:
       opacity 300ms ease,
-      transform 300ms ease,
+      translate 300ms ease,
       visibility 300ms ease;
   }
 
   .nav-dropdown-panel[data-open='true'] {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    translate: 0 0;
     pointer-events: auto;
   }
 
   .nav-dropdown-panel[data-open='false'] {
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-6px);
+    translate: 0 -6px;
     pointer-events: none;
   }
 
